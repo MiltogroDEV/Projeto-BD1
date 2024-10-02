@@ -21,8 +21,8 @@ const senha = document.getElementById("inputSenha")
 function Login(){
     if(inputCpf.value.length < 14 || senha.value.length < 5){
         if(inputCpf.value == loginCPF && senha.value == loginSenha){
-            alert("logado")
-            window.location.replace("http://127.0.0.1:5500/Pages/inicio.html")
+            // window.location.replace("http://127.0.0.1:5500/Pages/inicio.html")
+            window.location.replace("https://google.com")
         } else {
             alert("Credenciais inválidas.")
             inputCpf.value = ""

@@ -17,19 +17,9 @@ const senha1 = document.getElementById("inputSenha1")
 const senha2 = document.getElementById("inputSenha2")
 
 function Cadastrar(){
-    if(inputCpf.value == "" || inputCpf.value.length < 14){
-        alert("CPF inválido.")
+    if(inputCpf.value.length < 14 || senha1.value.length < 5 || senha2.value.length < 5 || senha1.value != senha2.value){
+        alert("Credenciais inválidas.")
         inputCpf.value =  ""
-    }
-
-    if(senha1.value.length < 5 && senha2.value.length < 5){
-        alert("Crie uma senha com no mínimo 5 dígitos.")
-        senha1.value = ""
-        senha2.value = ""
-    }
-
-    if(senha1.value != senha2.value){
-        alert("Senhas não estão iguais.")
         senha1.value = ""
         senha2.value = ""
     }

@@ -10,7 +10,7 @@
 
 :root{
     --CorBranco: White;
-    --CorCinzaCla: rgb(129, 129, 129);
+    --CorCinzaCla: rgb(206, 206, 206);
     /* --CorCinza: rgb(85, 85, 85); */
     --CorCinza: rgba(85, 85, 85, 0.596);
     --CorCinzaEsc: rgb(34, 34, 34);
@@ -24,6 +24,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 30px 20px;
+    border-radius: 10px;
+    background-color:var(--CorCinzaCla);
 }
 
 #logBox{
@@ -115,4 +118,20 @@
 .link{
     color: var(--CorCinzaEsc);
     font-weight: 600;
+}
+
+/* -------------------------------------------- */
+
+.bgw{
+    background-color: var(--CorBranco);
+}
+
+.card{
+    width: 400px;
+    height: 100px;
+}
+
+#btnMain{
+    display: flex;
+    justify-content: center;
 }
