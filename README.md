@@ -1,1 +1,1 @@
-<a href="https://miltogrodev.github.io/Projeto-BD1/">Go to Page</a>
+<a href="projeto-bd1.vercel.app">Go to Page</a>
