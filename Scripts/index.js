@@ -54,7 +54,7 @@ function Login(event) {
     } else if (inputCpf.value == "1" && senha.value == "1") {    
         showMessage("success", "Login bem-sucedido! Redirecionando...");
         setTimeout(() => {
-            window.location.href = "http://127.0.0.1:5500/Pages/index.html";
+            window.location.href = "http://127.0.0.1:5500/index.html";
         }, 2000);
         logged = true;
     } else {
