@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div id="login-form">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Usuário" class="form-control mb-2">
+      <input type="password" id="password" placeholder="Senha" class="form-control mb-2">
+      <button id="login-btn" class="btn btn-primary">Login</button>
+    </div>
+
+    <div id="welcome-message" style="display:none;">
+      <h2>Bem-vindo, <span id="user"></span>!</h2>
+      <button id="logout-btn" class="btn btn-secondary">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-btn').addEventListener('click', function() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Simular autenticação simples
+      if (username === 'admin' && password === '123') {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('welcome-message').style.display = 'block';
+        document.getElementById('user').textContent = username;
+      } else {
+        alert('Usuário ou senha incorretos!');
+      }
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', function() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('welcome-message').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
