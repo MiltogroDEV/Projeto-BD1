@@ -1,8 +1,6 @@
 const inputCpf = document.getElementById("inputCPF");
 const senha = document.getElementById("inputSenha");
 
-let logged = false;
-
 // Função para formatar o CPF enquanto o usuário digita
 inputCpf.addEventListener('keypress', (e) => {
     let inputLength = inputCpf.value.length;
@@ -13,10 +11,29 @@ inputCpf.addEventListener('keypress', (e) => {
     }
 });
 
+const inputCpf1 = document.getElementById("inputCPF1");
+const senha1 = document.getElementById("inputSenha1");
+const senha2 = document.getElementById("inputSenha2");
+
+// Função para cadastrar usuário
+function Cadastrar(){
+    if(inputCpf1.value.length < 14 || senha1.value.length < 5 || senha2.value.length < 5 || senha1.value != senha2.value){
+        showMessage("error", "Credenciais inválidas.");
+        inputCpf.value =  ""
+        senha1.value = ""
+        senha2.value = ""
+    } else {
+        showMessage("success", "Conta criada com sucesso!!!");
+        setTimeout(() => {
+            window.location.href = "http://127.0.0.1:5500/Pages/login.html";
+        }, 2000);
+    }
+}
+
 // Função para mostrar o popup
 function showMessage(type, message) {
     const messageBox = document.getElementById("messageBox");
-
+    
     if (type === "success") {
         messageBox.className = "alert alert-success";
         messageBox.style.backgroundColor = "rgba(60, 255, 0, 0.253)";
@@ -24,12 +41,12 @@ function showMessage(type, message) {
         messageBox.className = "alert alert-danger";
         messageBox.style.backgroundColor = "rgba(255, 0, 0, 0.253)";
     }
-
+    
     messageBox.textContent = message;
-
+    
     // messageBox.style.display = "block";
     messageBox.style.display = "inline";
-
+    
     setTimeout(() => {
         messageBox.style.display = "none";
     }, 3000);
@@ -38,7 +55,7 @@ function showMessage(type, message) {
 // Função de login
 function Login(event) {
     event.preventDefault();
-
+    
     if (inputCpf.value.length === 14 && senha.value.length >= 5) {
         if (inputCpf.value === "111.111.111-11" && senha.value === "12345") {
             showMessage("success", "Login bem-sucedido! Redirecionando...");
@@ -67,6 +84,8 @@ loginButton.addEventListener("click", Login);
 
 const logCadBtns = document.getElementById("logCadBtns");
 const avatar = document.getElementById("avatar");
+
+let logged = false;
 
 // Função logado incompleta - fase de testes
 function Logged() {
