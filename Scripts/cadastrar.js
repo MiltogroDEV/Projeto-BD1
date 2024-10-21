@@ -78,52 +78,34 @@ function cadastrar(){
     // } else {
         // endereço do servidor
         const HOST_API = "https://academic-events-api-83ac51d23457.herokuapp.com"
-        // criar um JSON com os dados que você buscar ou inserir
-        // const data = {
-        //     "cpf": `${userCpf}`,
-        //     "name": `${inputNome.value}`,
-        //     "telefone": `${userTelefone}`,
-        //     "email": `${inputEmail.value}`,
-        //     "password": `${inputSenha1.value}`,
-        //     "rua": `${inputRua.value}`,
-        //     "numero": `${inputNumero.value}`,
-        //     "bairro": `${inputBairro.value}`,
-        //     "cidade": `${inputCidade.value}`,
-        //     "estado": `${inputEstado.value}`,
-        //     "role": "PARTICIPANT",
-        //     // "role": "professor",
-        //     // "role": "administrador",
-        // }
+
         const data = {
-            "cpf": "cpf",
-            "name": "nome",
-            "telefone": "telefone",
-            "email": "email",
-            "password": "password",
-            "rua": "rua",
-            "numero": "numero",
-            "bairro": "bairro",
-            "cidade": "cidade",
-            "estado": "estado",
-            "role": "PARTICIPANT",
-            // "role": "professor",
-            // "role": "administrador",
+            "cpf": `${userCpf}`,
+            "name": `${inputNome.value}`,
+            "telefone": `${userTelefone}`,
+            "email": `${inputEmail.value}`,
+            "password": `${inputSenha1.value}`,
+            "rua": `${inputRua.value}`,
+            "numero": `${inputNumero.value}`,
+            "bairro": `${inputBairro.value}`,
+            "cidade": `${inputCidade.value}`,
+            "estado": `${inputEstado.value}`,
+            "role": "ADM",
+            // "role": "PARTICIPANT",
         }
 
         // para o navegador criar a requisição
         const requestInfo = {
-            method: "POST", // ou "GET", "POST", "PUT", "DELETE" dependendo do seu caso
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data) // inserir os dados json aqui
+            body: JSON.stringify(data)
         };
-
-        console.log(data)
         
         // fetch abre a conexao com o banco de dados
         fetch(`${HOST_API}/create/user`, requestInfo)
-        .then(response => response)
+        .then(response => response.json())
         .then(data => {
             console.log(data);
         }).catch(error => {
@@ -140,6 +122,10 @@ function cadastrar(){
 
 const cadastrarButton = document.getElementById("cadastrarBtn");
 cadastrarButton.addEventListener("click", cadastrar);
+
+document.getElementById("registerForm").addEventListener('submit', (e) => {
+    e.preventDefault();
+});
 
 // TESTES
 // setInterval(() => {

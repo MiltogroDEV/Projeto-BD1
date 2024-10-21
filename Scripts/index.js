@@ -42,39 +42,45 @@ function showMessage(type, message) {
 }
 
 // Função de login
-function login(event) {
-    event.preventDefault();
+// function login(event) {
+//     event.preventDefault();
     
-    if (inputCpf.value.length === 14 && senha.value.length >= 5) {
-        if (inputCpf.value === "111.111.111-11" && senha.value === "12345") {
-            showMessage("success", "Login bem-sucedido! Redirecionando...");
-            setTimeout(() => {
-                window.location.href = "http://127.0.0.1:5500/Pages/index.html";
-            }, 2000);
-            logged = true;
-        } else {
-            showMessage("error", "Credenciais inválidas.");
-            inputCpf.value = "";
-            senha.value = "";
-        }
-    } else if (inputCpf.value == "1" && senha.value == "1") {    
+//     if (inputCpf.value.length === 14 && senha.value.length >= 5) {
+//         if (inputCpf.value === "111.111.111-11" && senha.value === "12345") {
+//             showMessage("success", "Login bem-sucedido! Redirecionando...");
+//             setTimeout(() => {
+//                 window.location.href = "http://127.0.0.1:5500/Pages/index.html";
+//             }, 2000);
+//             logged = true;
+//         } else {
+//             showMessage("error", "Credenciais inválidas.");
+//             inputCpf.value = "";
+//             senha.value = "";
+//         }
+//     } else if (inputCpf.value == "1" && senha.value == "1") {    
+//         showMessage("success", "Login bem-sucedido! Redirecionando...");
+//         setTimeout(() => {
+//             console.log("Passou")
+//             window.location.href = "/index.html";
+//         }, 3000);
+//     } else {
+//         showMessage("error", "Por favor, preencha o CPF e a senha corretamente.");
+//     }
+// }
+
+function login(e){
+    e.preventDefault();
+
+    if (inputCpf.value == "1" && senha.value == "1") {    
         showMessage("success", "Login bem-sucedido! Redirecionando...");
         setTimeout(() => {
             console.log("Passou")
-            window.location.href = "/index.html";
+            window.location.href = "/Pages/Participante/homePart.html";
         }, 3000);
-        logged = true;
-    } else {
-        showMessage("error", "Por favor, preencha o CPF e a senha corretamente.");
-    }
-}
-
-function login(){
-    if(inputCpf.value.length != 14 && senha.value.length < 5){
+    } else if (inputCpf.value.length != 14 && senha.value.length < 5){
         showMessage("error", "Credenciais inválidas.");
         inputCpf.value =  ""
         senha.value = ""
-    } else {
         const HOST_API = "http://127.0.0.1:8080"
         const data = {
             "cpf": `${userCpf.value}`,
@@ -97,7 +103,9 @@ function login(){
             console.error("Erro na requisição:", error);
         });
 
-        showMessage("success", "Conta criada com sucesso!!!");
+        
+
+        showMessage("success", "Login efetuado com sucesso!!!");
         setTimeout(() => {
             console.log("Passou")
             window.location.href = "../Pages/login.html";

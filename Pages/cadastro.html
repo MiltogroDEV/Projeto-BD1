@@ -13,7 +13,7 @@
             <!-- <div class="card-header text-center pb-0"></div>
                 <h2 class="h4">Cadastre-se na nossa plataforma!</h2>
             <!-- </div> -->
-            <form class="row g-3" novalidate>
+            <form class="row g-3" id="registerForm">
                 <div class="col-md-8">
                   <label class="form-label">Nome Completo</label>
                   <input type="text" class="form-control" id="inputNome" placeholder="Digite seu nome" maxlength="100" required />
@@ -97,45 +97,9 @@
                         <button id="cadastrarBtn" class="btn btn-primary" type="submit">Cadastre-se</button>
                     </div>
             </form>
-<!-- 
-            <h2 class="h4">Cadastre-se na plataforma!</h2>
-            <div class="card-body">
-                <form action="#" class="mt-4">
-                    <div class="">
-                        <label for="">CPF</label>
-                        <div class="input-group mb-4">
-                            <input class="form-control" id="inputCPF1" placeholder="000.000.000-00" maxlength="14" type="text">
-                        </div>
-                    </div>
-                    <div class="">
-                        <label for="">Nome Completo</label>
-                        <div class="input-group mb-4">
-                            <input class="form-control" id="inputNome" placeholder="Digite seu nome" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="">Senha</label>
-                            <div class="input-group mb-4">
-                                <input class="form-control" id="inputSenha1" placeholder="Digite sua Senha" maxlength="20" type="password" required="">
-                            </div>
-                            <div class="input-group mb-4">
-                                <input class="form-control" id="inputSenha2" placeholder="Repita sua Senha" maxlength="20" type="password" required="">
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                        </div>
-                    </div>
-                    <div id="btnMain">
-                        <button id="cadastrarBtn" class="btn btn-primary">Cadastrar</button>
-                    </div>
-                </form>
-                <div class="d-sm-flex justify-content-center mt-4">
-                    <span>Já possui uma conta? <a href="login.html" class="font-weight-bold">Faça login</a>
-                    </span>
-                </div>
-            </div> -->
-
+            <div class="d-sm-flex justify-content-center mt-4">
+                <span>Já tem uma conta? <a href="login.html" class="font-weight-bold">Faça Login</a>!</span>
+            </div>
         </div>
 
         <div id="messageBox" class="popup alert" style="display: none; padding: 10px; top: 20px; left: 20px;"></div>
