@@ -1,4 +1,3 @@
-
 const inputNome = document.getElementById("inputNome");
 const inputCpf = document.getElementById("inputCPF");
 const inputEmail = document.getElementById("inputEmail");
@@ -10,6 +9,7 @@ const inputBairro = document.getElementById("inputBairro");
 const inputNumero = document.getElementById("inputNumero");
 const inputSenha1 = document.getElementById("inputSenha1");
 const inputSenha2 = document.getElementById("inputSenha2");
+const termosCondicoes = document.getElementById("termosCondicoes");
 
 let userCpf;
 let userTelefone;
@@ -24,7 +24,6 @@ inputCpf.addEventListener('input', (e) => {
 
     if (inputLength === 14){
         let userCpf = inputCpf.value.replace(/[.-]/g, '');
-        console.log(userCpf);
     }
 });
 
@@ -42,7 +41,6 @@ inputTelefone.addEventListener('input', (e) => {
 
     if (inputLength === 15){
         let userTelefone = inputTelefone.value.replace(/[()\s-]/g, '');
-        console.log(userTelefone);
     }
 });
 
@@ -59,8 +57,6 @@ function showMessage(type, message) {
     }
     
     messageBox.textContent = message;
-    
-    // messageBox.style.display = "block";
     messageBox.style.display = "inline";
     
     setTimeout(() => {
@@ -70,18 +66,45 @@ function showMessage(type, message) {
 
 // Função para cadastrar usuário
 function cadastrar(){
-    // if(inputCpf.value.length < 14 || inputSenha1.value.length < 5 || inputSenha2.value.length < 5 || inputSenha1.value != inputSenha2.value){
-    //     showMessage("error", "Credenciais inválidas.");
-    //     inputCpf.value =  ""
-    //     inputSenha1.value = ""
-    //     inputSenha2.value = ""
-    // } else {
-        // endereço do servidor
+    if(
+    inputNome.value.length < 1 ||
+    inputCpf.value.length < 14 ||
+    inputSenha1.value.length < 5 ||
+    inputSenha2.value.length < 5 ||
+    inputSenha1.value != inputSenha2.value ||
+    inputEmail.value.length < 5 ||
+    inputTelefone.value.length < 14 ||
+    inputRua.value.length < 1 || 
+    inputBairro.value.length < 1 ||
+    inputNumero.value.length == 0){
+        showMessage("error", "Credenciais inválidas.");
+        if (inputNome.value.length < 1) {
+            inputNome.value = "";
+        } if (inputCpf.value.length < 14) {
+            inputCpf.value = "";
+        } if (inputSenha1.value.length < 5 || inputSenha2.value.length < 5 || inputSenha1.value != inputSenha2.value) {
+            inputSenha1.value = "";
+            inputSenha2.value = "";
+        } if (inputEmail.value.length < 5) {
+            inputEmail.value = "";
+        } if (inputTelefone.value.length < 14) {
+            inputTelefone.value = "";
+        } if (inputRua.value.length < 1) {
+            inputRua.value = "";
+        } if (inputBairro.value.length < 1) {
+            inputBairro.value = "";
+        } if (inputNumero.value.length == 0) {
+            inputNumero.value = "";
+        }
+    } else if (!termosCondicoes.checked){
+        showMessage("error", "Para continuar, aceite os termos e condições.");
+    } else {
         const HOST_API = "https://academic-events-api-83ac51d23457.herokuapp.com"
 
         const data = {
             "cpf": `${userCpf}`,
             "name": `${inputNome.value}`,
+            "foto": "Default",
             "telefone": `${userTelefone}`,
             "email": `${inputEmail.value}`,
             "password": `${inputSenha1.value}`,
@@ -92,6 +115,7 @@ function cadastrar(){
             "estado": `${inputEstado.value}`,
             "role": "ADM",
             // "role": "PARTICIPANT",
+            // "role": "PROFESSOR",
         }
 
         // para o navegador criar a requisição
@@ -102,6 +126,8 @@ function cadastrar(){
             },
             body: JSON.stringify(data)
         };
+
+        console.log(data)
         
         // fetch abre a conexao com o banco de dados
         fetch(`${HOST_API}/create/user`, requestInfo)
@@ -118,7 +144,7 @@ function cadastrar(){
         //     window.location.href = "../Pages/login.html";
         // }, 3000);
     }
-// }
+}
 
 const cadastrarButton = document.getElementById("cadastrarBtn");
 cadastrarButton.addEventListener("click", cadastrar);
@@ -128,6 +154,6 @@ document.getElementById("registerForm").addEventListener('submit', (e) => {
 });
 
 // TESTES
-// setInterval(() => {
-//     console.log(inputEstado.value)
-// }, 100)
+setInterval(() => {
+    console.log()
+}, 100)
