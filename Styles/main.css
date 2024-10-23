@@ -108,8 +108,14 @@
     margin-bottom: 50px;
 }
 
-#subBtn {
+.subBtn{
     width: 15vw;
+    height: 7vh;
+    font-size: 2.5vh;
+}
+
+#subBtn {
+    width: 20vw;
     height: 6vh;
     font-size: 3vh;
 }
