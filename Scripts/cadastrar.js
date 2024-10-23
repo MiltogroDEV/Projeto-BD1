@@ -23,11 +23,10 @@ inputCpf.addEventListener('input', (e) => {
     }
 
     if (inputLength === 14){
-        let userCpf = inputCpf.value.replace(/[.-]/g, '');
+        userCpf = inputCpf.value.replace(/[.-]/g, '');
     }
 });
 
-// Mascara para inputTelefone
 inputTelefone.addEventListener('input', (e) => {
     let inputLength = inputTelefone.value.length;
 
@@ -40,7 +39,7 @@ inputTelefone.addEventListener('input', (e) => {
     }
 
     if (inputLength === 15){
-        let userTelefone = inputTelefone.value.replace(/[()\s-]/g, '');
+        userTelefone = inputTelefone.value.replace(/[()\s-]/g, '');
     }
 });
 
@@ -102,11 +101,12 @@ function cadastrar(){
     } else if (!termosCondicoes.checked){
         showMessage("warning", "Para continuar, aceite os termos e condições.");
     } else {
+
         const HOST_API = "https://academic-events-api-83ac51d23457.herokuapp.com"
 
         const data = {
             "cpf": `${userCpf}`,
-            "name": `${inputNome.value}`,
+            "nome": `${inputNome.value}`,
             "foto": "Default",
             "telefone": `${userTelefone}`,
             "email": `${inputEmail.value}`,
