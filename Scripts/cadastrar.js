@@ -54,6 +54,9 @@ function showMessage(type, message) {
     } else if (type === "error") {
         messageBox.className = "alert alert-danger";
         messageBox.style.backgroundColor = "rgba(255, 0, 0, 0.253)";
+    } else if (type === "warning") {
+        messageBox.className = "alert alert-warning";
+        messageBox.style.backgroundColor = "rgba(rgb(255, 202, 0, 0.5)";
     }
     
     messageBox.textContent = message;
@@ -97,7 +100,7 @@ function cadastrar(){
             inputNumero.value = "";
         }
     } else if (!termosCondicoes.checked){
-        showMessage("error", "Para continuar, aceite os termos e condições.");
+        showMessage("warning", "Para continuar, aceite os termos e condições.");
     } else {
         const HOST_API = "https://academic-events-api-83ac51d23457.herokuapp.com"
 
