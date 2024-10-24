@@ -1,3 +1,5 @@
+import { apiCall } from "./apicalls.js";
+
 const inputNome = document.getElementById("inputNome");
 const inputCpf = document.getElementById("inputCPF");
 const inputEmail = document.getElementById("inputEmail");
@@ -13,6 +15,7 @@ const termosCondicoes = document.getElementById("termosCondicoes");
 
 let userCpf;
 let userTelefone;
+let userEmail = false;
 
 inputCpf.addEventListener('input', (e) => {
     let inputLength = inputCpf.value.length;
@@ -43,6 +46,14 @@ inputTelefone.addEventListener('input', (e) => {
     }
 });
 
+inputEmail.addEventListener('input', () => {
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (regexEmail.test(inputEmail.value)) {
+        userEmail = true;
+    }
+});
+
 // Função para mostrar o popup
 function showMessage(type, message) {
     const messageBox = document.getElementById("messageBox");
@@ -68,17 +79,7 @@ function showMessage(type, message) {
 
 // Função para cadastrar usuário
 function cadastrar(){
-    if(
-    inputNome.value.length < 1 ||
-    inputCpf.value.length < 14 ||
-    inputSenha1.value.length < 5 ||
-    inputSenha2.value.length < 5 ||
-    inputSenha1.value != inputSenha2.value ||
-    inputEmail.value.length < 5 ||
-    inputTelefone.value.length < 14 ||
-    inputRua.value.length < 1 || 
-    inputBairro.value.length < 1 ||
-    inputNumero.value.length == 0){
+    if(inputNome.value.length < 1 || inputCpf.value.length < 14 || inputSenha1.value.length < 5 || inputSenha2.value.length < 5 || inputSenha1.value != inputSenha2.value || !userEmail || inputTelefone.value.length < 14 || inputRua.value.length < 1 || inputBairro.value.length < 1 || inputNumero.value.length == 0){
         showMessage("error", "Credenciais inválidas.");
         if (inputNome.value.length < 1) {
             inputNome.value = "";
@@ -87,7 +88,7 @@ function cadastrar(){
         } if (inputSenha1.value.length < 5 || inputSenha2.value.length < 5 || inputSenha1.value != inputSenha2.value) {
             inputSenha1.value = "";
             inputSenha2.value = "";
-        } if (inputEmail.value.length < 5) {
+        } if (!userEmail) {
             inputEmail.value = "";
         } if (inputTelefone.value.length < 14) {
             inputTelefone.value = "";
@@ -102,8 +103,6 @@ function cadastrar(){
         showMessage("warning", "Para continuar, aceite os termos e condições.");
     } else {
 
-        const HOST_API = "https://academic-events-api-83ac51d23457.herokuapp.com"
-
         const data = {
             "cpf": `${userCpf}`,
             "nome": `${inputNome.value}`,
@@ -116,36 +115,19 @@ function cadastrar(){
             "bairro": `${inputBairro.value}`,
             "cidade": `${inputCidade.value}`,
             "estado": `${inputEstado.value}`,
-            "role": "ADM",
+            "role": "PARTICIPANT",
             // "role": "PARTICIPANT",
             // "role": "PROFESSOR",
+            // "role": "ADM",
         }
 
-        // para o navegador criar a requisição
-        const requestInfo = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        };
-
-        console.log(data)
-        
-        // fetch abre a conexao com o banco de dados
-        fetch(`${HOST_API}/create/user`, requestInfo)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        }).catch(error => {
-            console.error("Erro na requisição:", error);
-        });
+        apiCall("/create/user", "POST", data);
 
         showMessage("success", "Conta criada com sucesso!!!");
-        // setTimeout(() => {
-        //     console.log("Passou")
-        //     window.location.href = "../Pages/login.html";
-        // }, 3000);
+        setTimeout(() => {
+            console.log(".")
+            window.location.href = "../Pages/login.html";
+        }, 3000);
     }
 }
 
