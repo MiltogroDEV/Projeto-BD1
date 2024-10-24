@@ -45,15 +45,20 @@ async function login(e){
                 localStorage.setItem("userSession", JSON.stringify(userSession));
 
                 showMessage("success", "Login efetuado com sucesso!!!");
+
                 setTimeout(() => {
-                    if (userSession.role === "ADM") {
-                        window.location.href = "../Pages/adm/homePart.html";
-                    } else if (userSession.role === "PROFESSOR") {
-                        window.location.href = "../Pages/professor/homePart.html";
-                    } else {
-                        window.location.href = "../Pages/participante/homePart.html";
-                    }
+                    window.location.href = "/Pages/participante/homePart.html";
                 }, 2000);
+
+                // setTimeout(() => {
+                //     if (userSession.role === "ADM") {
+                //         window.location.href = "../Pages/adm/homePart.html";
+                //     } else if (userSession.role === "PROFESSOR") {
+                //         window.location.href = "../Pages/professor/homePart.html";
+                //     } else {
+                //         window.location.href = "../Pages/participante/homePart.html";
+                //     }
+                // }, 2000);
             } else {
                 showMessage("error", "Credenciais inválidas!")
             }
