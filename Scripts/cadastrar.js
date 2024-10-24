@@ -1,4 +1,5 @@
-import { apiCall } from "./apicalls.js";
+import { apiCall } from "../scripts/components/apicalls.js";
+import { showMessage } from "../scripts/components/showMessage.js";
 
 const inputNome = document.getElementById("inputNome");
 const inputCpf = document.getElementById("inputCPF");
@@ -54,30 +55,6 @@ inputEmail.addEventListener('input', () => {
     }
 });
 
-// Função para mostrar o popup
-function showMessage(type, message) {
-    const messageBox = document.getElementById("messageBox");
-    
-    if (type === "success") {
-        messageBox.className = "alert alert-success";
-        messageBox.style.backgroundColor = "rgba(60, 255, 0, 0.253)";
-    } else if (type === "error") {
-        messageBox.className = "alert alert-danger";
-        messageBox.style.backgroundColor = "rgba(255, 0, 0, 0.253)";
-    } else if (type === "warning") {
-        messageBox.className = "alert alert-warning";
-        messageBox.style.backgroundColor = "rgba(rgb(255, 202, 0, 0.5)";
-    }
-    
-    messageBox.textContent = message;
-    messageBox.style.display = "inline";
-    
-    setTimeout(() => {
-        messageBox.style.display = "none";
-    }, 3000);
-}
-
-// Função para cadastrar usuário
 function cadastrar(){
     if(inputNome.value.length < 1 || inputCpf.value.length < 14 || inputSenha1.value.length < 5 || inputSenha2.value.length < 5 || inputSenha1.value != inputSenha2.value || !userEmail || inputTelefone.value.length < 14 || inputRua.value.length < 1 || inputBairro.value.length < 1 || inputNumero.value.length == 0){
         showMessage("error", "Credenciais inválidas.");
@@ -139,6 +116,6 @@ document.getElementById("registerForm").addEventListener('submit', (e) => {
 });
 
 // TESTES
-setInterval(() => {
-    console.log()
-}, 100)
+// setInterval(() => {
+//     console.log()
+// }, 100)

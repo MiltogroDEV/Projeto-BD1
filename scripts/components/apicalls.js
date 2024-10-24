@@ -8,18 +8,17 @@ function apiCall(root, method, data){
         },
         body: JSON.stringify(data)
     };
-
-    console.log(data)
     
     fetch(`${HOST_API}${root}`, requestInfo)
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        return data;
     }).catch(error => {
         console.error("Erro na requisição:", error);
+        return error;
     });
     
-    return data;
 }
 
 export { apiCall };
