@@ -19,20 +19,47 @@ inputCpf.addEventListener('input', (e) => {
     }
 });
 
-function login(e){
+async function login(e){
+    let attemptLoggin;
     e.preventDefault();
 
     if (inputCpf.value.length != 14 || senha.value.length < 5){
         showMessage("error", "Credenciais inválidas!");
     } else {
         const data = {
-            "cpf": `${userCpf.value}`,
+            "cpf": `${userCpf}`,
             "password": `${senha.value}`,
         }
 
-        apiCall("/login", "GET", data)
+        try{
+            console.log("tentando logar"); // remover depois
+            attemptLoggin = await apiCall("/login", "POST", data);
+            if(attemptLoggin.success){
+                showMessage("sucess", "Login efetuado com sucesso!")
 
-        showMessage("success", "Login efetuado com sucesso!!!");
+                const userSession = {
+                    cpf: userCpf,
+                    role: attemptLogin.role,
+                };
+
+                localStorage.setItem("userSession", JSON.stringify(userSession));
+
+                showMessage("success", "Login efetuado com sucesso!!!");
+                setTimeout(() => {
+                    if (userSession.role === "ADM") {
+                        window.location.href = "../Pages/adm/homePart.html";
+                    } else if (userSession.role === "PROFESSOR") {
+                        window.location.href = "../Pages/professor/homePart.html";
+                    } else {
+                        window.location.href = "../Pages/participante/homePart.html";
+                    }
+                }, 2000);
+            } else {
+                showMessage("error", "Credenciais inválidas!")
+            }
+        } catch (e){
+            console.log(e);
+        }
 
         setTimeout(() => {
             console.log("Passou")
@@ -43,3 +70,7 @@ function login(e){
 
 const loginButton = document.getElementById("loginBtn");
 loginButton.addEventListener("click", login);
+
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+})

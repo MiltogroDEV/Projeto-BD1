@@ -1,4 +1,4 @@
-function apiCall(root, method, data){
+async function apiCall(root, method, data){
     const HOST_API = "https://academic-events-api-83ac51d23457.herokuapp.com"
 
     const requestInfo = {
@@ -9,16 +9,15 @@ function apiCall(root, method, data){
         body: JSON.stringify(data)
     };
     
-    fetch(`${HOST_API}${root}`, requestInfo)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        return data;
-    }).catch(error => {
-        console.error("Erro na requisição:", error);
-        return error;
-    });
-    
+    return Promise.resolve(
+        fetch(`${HOST_API}${root}`, requestInfo)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        }).catch(error => {
+            return error;
+        })
+    );
 }
 
 export { apiCall };
