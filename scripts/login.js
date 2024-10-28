@@ -44,8 +44,6 @@ async function login(e){
 
                 localStorage.setItem("userSession", JSON.stringify(userSession));
 
-                showMessage("success", "Login efetuado com sucesso!!!");
-
                 setTimeout(() => {
                     window.location.href = "/Pages/participante/homePart.html";
                 }, 2000);
@@ -78,4 +76,9 @@ loginButton.addEventListener("click", login);
 
 document.getElementById("loginForm").addEventListener("submit", (e) => {
     e.preventDefault();
-})
+});
+
+const btnVoltar = document.getElementById("btnVoltar");
+btnVoltar.addEventListener('click', (e) => {
+    window.location.href = "/index.html"
+});

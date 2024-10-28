@@ -117,6 +117,11 @@ document.getElementById("registerForm").addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
+const btnVoltar = document.getElementById("btnVoltar");
+btnVoltar.addEventListener('click', (e) => {
+    window.location.href = "/index.html"
+});
+
 // TESTES
 // setInterval(() => {
 //     console.log()
