@@ -25,6 +25,13 @@ async function login(e){
 
     if (inputCpf.value.length != 14 || senha.value.length < 5){
         showMessage("error", "Credenciais inválidas!");
+
+        if(inputCpf.value.length != 14){
+            inputCpf.value = "";
+        }
+        if(senha.value.length < 5){
+            senha.value = "";
+        }
     } else {
         const data = {
             "cpf": `${userCpf}`,
@@ -59,6 +66,9 @@ async function login(e){
                 // }, 2000);
             } else {
                 showMessage("error", "Credenciais inválidas!")
+
+                inputCpf.value = "";
+                senha.value = "";
             }
         } catch (e){
             console.log(e);

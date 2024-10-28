@@ -55,7 +55,7 @@ inputEmail.addEventListener('input', () => {
     }
 });
 
-function cadastrar(){
+async function cadastrar(){
     if(inputNome.value.length < 1 || inputCpf.value.length < 14 || inputSenha1.value.length < 5 || inputSenha2.value.length < 5 || inputSenha1.value != inputSenha2.value || !userEmail || inputTelefone.value.length < 14 || inputRua.value.length < 1 || inputBairro.value.length < 1 || inputNumero.value.length == 0){
         showMessage("error", "Credenciais inválidas.");
         if (inputNome.value.length < 1) {
@@ -100,13 +100,38 @@ function cadastrar(){
             // "role": "ADM",
         }
 
-        apiCall("/create/user", "POST", data);
+        try{
+            attemptLoggin = await apiCall("/create/user", "POST", data);
+
+            if(attemptLoggin.success){
+                showMessage("sucess", "Login efetuado com sucesso!")
+                
+                setTimeout(() => {
+                    window.location.href = "/Pages/login.html";
+                }, 2000);
+            } else if(attemptLoggin.error){
+                showMessage("error", "CPF já existente!");
+
+                inputNome.value = "";
+                inputCpf.value = "";
+                inputSenha1.value = "";
+                inputSenha2.value = "";
+                inputEmail.value = "";
+                inputTelefone.value = "";
+                inputRua.value = "";
+                inputBairro.value = "";
+                inputNumero.value = "";
+            }
+        } catch(e) {
+            console.log(e);
+        }
+
 
         showMessage("success", "Conta criada com sucesso!!!");
-        setTimeout(() => {
-            console.log(".")
-            window.location.href = "../Pages/login.html";
-        }, 3000);
+        // setTimeout(() => {
+        //     console.log(".")
+        //     window.location.href = "../Pages/login.html";
+        // }, 3000);
     }
 }
 

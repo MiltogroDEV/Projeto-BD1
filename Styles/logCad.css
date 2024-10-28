@@ -31,6 +31,11 @@
     min-width: 25vw;
 }
 
+#registerForm{
+    width: 55vw;
+    height: 55vh;
+}
+
 #logBox{
     background-color: var(--CorCinza);
     width: 10vw;
@@ -144,5 +149,5 @@
 #btnVoltar{
     position: absolute;
     top: 1vh;
-    right: 1vh;
+    right: 1vw;
 }
