@@ -94,8 +94,7 @@ async function cadastrar(){
             "bairro": `${inputBairro.value}`,
             "cidade": `${inputCidade.value}`,
             "estado": `${inputEstado.value}`,
-            "role": "PARTICIPANT",
-            // "role": "ADM",
+            "role": "PROFESSOR",
         }
 
         console.log(data);

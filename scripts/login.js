@@ -38,6 +38,8 @@ async function login(e){
             "password": `${senha.value}`,
         }
 
+        console.log(data);
+
         try{
             console.log("tentando logar"); // remover depois
             attemptLoggin = await apiCall("/login", "POST", data);
@@ -65,7 +67,7 @@ async function login(e){
                 //     }
                 // }, 2000);
             } else {
-                showMessage("error", "Credenciais inválidas!")
+                showMessage("error", "Credenciais inválidas!");
 
                 inputCpf.value = "";
                 senha.value = "";
@@ -75,7 +77,7 @@ async function login(e){
         }
 
         setTimeout(() => {
-            console.log("Passou")
+            console.log("Passou");
             window.location.href = "../Pages/login.html";
         }, 3000);
     }
