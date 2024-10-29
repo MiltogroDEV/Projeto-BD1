@@ -19,6 +19,10 @@
 
 /* ---------------------- Inicio ---------------------- */
 
+#btnInicio, #btnEventos{
+    cursor: pointer;
+}
+
 #main{
     display: flex;
     justify-content: center;
@@ -146,6 +150,10 @@
 
 .displayDir{
     width: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 #userNome{
@@ -160,4 +168,8 @@
 #userEmail{
     font-weight: 300;
     font-size: 2.5vh;
+}
+
+#userRole{
+    color: var(--CorCinzaCla);
 }

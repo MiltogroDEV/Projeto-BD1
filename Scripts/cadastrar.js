@@ -104,7 +104,7 @@ async function cadastrar(e){
             const attemptLoggin = await apiCall("/create/user", "POST", data);
 
             if(attemptLoggin.success){
-                showMessage("sucess", "Login efetuado com sucesso!")
+                showMessage("sucess", "Conta cadastrada com sucesso!")
                 
                 setTimeout(() => {
                     window.location.href = "/Pages/login.html";
