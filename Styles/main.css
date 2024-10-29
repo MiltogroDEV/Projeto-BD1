@@ -128,3 +128,36 @@
     width: 100%;
     height: 10vh;
 }
+
+/* ---------------------- Perfil ---------------------- */
+
+.avatar{
+    scale: 100%;
+}
+
+.userDisplay{
+    display: flex;
+    justify-content: center;
+}
+
+.displayEsq{
+    width: 20%;
+}
+
+.displayDir{
+    width: 70%;
+}
+
+#userNome{
+    font-weight: 600;
+}
+
+#userCpf{
+    font-weight: 500;
+    font-size: 3vh;
+}
+
+#userEmail{
+    font-weight: 300;
+    font-size: 2.5vh;
+}

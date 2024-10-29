@@ -44,28 +44,32 @@ async function login(e){
             console.log("tentando logar"); // remover depois
             attemptLoggin = await apiCall("/login", "POST", data);
             if(attemptLoggin.success){
-                showMessage("sucess", "Login efetuado com sucesso!")
+                showMessage("success", "Login efetuado com sucesso!")
 
                 const userSession = {
-                    cpf: userCpf,
-                    role: attemptLogin.role,
+                    cpf: attemptLoggin.cpf,
+                    role: attemptLoggin.role,
+                    cidade: attemptLoggin.cidade,
+                    estado: attemptLoggin.estado,
+                    foto: attemptLoggin.foto,
+                    numero: attemptLoggin.numero,
+                    bairro: attemptLoggin.bairro,
+                    nome: attemptLoggin.nome,
+                    email: attemptLoggin.email,
+                    rua: attemptLoggin.rua
                 };
 
                 localStorage.setItem("userSession", JSON.stringify(userSession));
 
                 setTimeout(() => {
-                    window.location.href = "/Pages/participante/homePart.html";
+                    if (userSession.role === "ADM") {
+                        window.location.href = "../Pages/adm/homeAdm.html";
+                    } else if (userSession.role === "PROFESSOR") {
+                        window.location.href = "../Pages/professor/homeProf.html";
+                    } else {
+                        window.location.href = "../Pages/participante/homePart.html";
+                    }
                 }, 2000);
-
-                // setTimeout(() => {
-                //     if (userSession.role === "ADM") {
-                //         window.location.href = "../Pages/adm/homePart.html";
-                //     } else if (userSession.role === "PROFESSOR") {
-                //         window.location.href = "../Pages/professor/homePart.html";
-                //     } else {
-                //         window.location.href = "../Pages/participante/homePart.html";
-                //     }
-                // }, 2000);
             } else {
                 showMessage("error", "Credenciais inválidas!");
 
@@ -75,11 +79,6 @@ async function login(e){
         } catch (e){
             console.log(e);
         }
-
-        setTimeout(() => {
-            console.log("Passou");
-            window.location.href = "../Pages/login.html";
-        }, 3000);
     }
 }
 
@@ -94,3 +93,8 @@ const btnVoltar = document.getElementById("btnVoltar");
 btnVoltar.addEventListener('click', (e) => {
     window.location.href = "/index.html"
 });
+
+// TESTES
+// setInterval(() => {
+//     console.log()
+// }, 100)
