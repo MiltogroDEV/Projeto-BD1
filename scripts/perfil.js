@@ -5,7 +5,6 @@ const userSession = JSON.parse(localStorage.getItem("userSession"));
 
 const userDisplay = document.getElementById("userDisplay");
 const btnDisplay = document.getElementById("btnDisplay");
-const btnDisplaySet = document.getElementById("btnDisplaySet");
 
 // const userFoto = document.getElementById("userFoto");
 const userCpf = document.getElementById("userCpf");
@@ -47,8 +46,6 @@ if (userSession) {
 
         userRole.textContent = userSession.role.charAt(0).toUpperCase() + userSession.role.slice(1);
 
-    } if (userSession.role == "administrador"){
-        btnDisplaySet.style.display = "block";
     }
 } else {
     noAcess.style.display = "block";
@@ -117,36 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const editProfileModal = new bootstrap.Modal(document.getElementById("editProfileModal"));
         editProfileModal.show();
-    });
-});
-
-const setCpfUser = document.getElementById("setCpf");
-const setRoleUser = document.getElementById("setRole");
-
-let setCpfUserFormatted;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const btnSet = document.getElementById("btnSet");
-
-    btnSet.addEventListener('click', () => {
-        setCpfUser.value = "";
-
-        const setUserModal = new bootstrap.Modal(document.getElementById("setUserModal"));
-        setUserModal.show();
-    });
-
-    setCpfUser.addEventListener('input', (e) => {
-        let inputLength = setCpfUser.value.length;
-        if (inputLength === 3 || inputLength === 7) {
-            setCpfUser.value += ".";
-        } else if (inputLength === 11) {
-            setCpfUser.value += "-";
-        }
-
-        if (inputLength === 14){
-            setCpfUserFormatted = setCpfUser.value.replace(/[.-]/g, '');
-            console.log(setCpfUserFormatted)
-        }
     });
 });
 
@@ -222,49 +189,6 @@ async function atualizarDados(e) {
         }
     }
 }
-
-async function setUser(e) {
-    e.preventDefault();
-
-    if (setCpfUser.value.length < 11){
-        showMessage("error", "Credenciais inválidas");
-        if(setCpfUser.value.length < 11){
-            setCpfUser.value = "";
-        }
-    } else {
-        const setRoleUserFormatted = setRoleUser.value.toLowerCase();
-
-        const data = {
-            "userCpf": `${setCpfUserFormatted}`,
-            "email": ``,
-            "rua": ``,
-            "cidade": ``,
-            "estado": ``,
-            "bairro": ``,
-            "numero": ``,
-            "role": `${setRoleUserFormatted}`,
-        }
-
-        try{
-            const attemptLoggin = await apiCall("/update/user", "PUT", data);
-
-            if (attemptLoggin.success) {
-                showMessage("success", "Dados atualizados com sucesso!");
-
-                setTimeout(() => {
-                    window.location.href = "/pages/perfil.html";
-                }, 1000);
-            } else if(attemptLoggin.error){
-                showMessage("error", `${attemptLoggin.error}`);
-            }
-        } catch(e) {
-            console.log(e);
-        }
-    }
-}
-
-const setBtnSave = document.getElementById("setBtnSalvarAlteracoes");
-setBtnSave.addEventListener('click', setUser);
 
 const btnSalvarAlteracoes = document.getElementById("btnSalvarAlteracoes");
 btnSalvarAlteracoes.addEventListener('click', atualizarDados);
