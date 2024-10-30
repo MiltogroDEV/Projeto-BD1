@@ -62,7 +62,7 @@ async function login(e){
                 localStorage.setItem("userSession", JSON.stringify(userSession));
 
                 setTimeout(() => {
-                    if (userSession.role === "adm") {
+                    if (userSession.role === "administrador") {
                         window.location.href = "../Pages/adm/homeAdm.html";
                     } else if (userSession.role === "professor") {
                         window.location.href = "../Pages/professor/homeProf.html";

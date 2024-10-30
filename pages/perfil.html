@@ -59,6 +59,9 @@
                     <div id="btnDisplay" style="display: none;">
                         <button id="btnEditPerfil" type="button" class="btn btn-outline-primary">Editar Perfil</button>
                         <button id="btnLogout" type="button" class="btn btn-outline-danger">Logout</button>
+                    </div><br>
+                    <div id="btnDisplaySet" style="display: none;">
+                        <button id="btnSet" type="button" class="btn btn-outline-discovery">Setar Usuário</button>
                     </div>
                 </div>
             </div>
@@ -156,6 +159,41 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary" id="btnSalvarAlteracoes">Salvar Alterações</button>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <div id="messageBox" class="popup alert" style="display: none; width: 60%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="setUserModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileEditForm">
+                        <div class="mb-3">
+                            <label for="editCpf" class="form-label">CPF</label>
+                            <input type="text" class="form-control" id="setCpf" maxlength="14" placeholder="Digite um CPF" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cargo</label>
+                            <select class="form-select" id="setRole" required>
+                                <option>Administrador</option>
+                                <option>Professor</option>
+                                <option>Participante</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="setBtnSalvarAlteracoes">Salvar Alterações</button>
                 </div>
                 <div style="display: flex; justify-content: center;">
                     <div id="messageBox" class="popup alert" style="display: none; width: 60%;"></div>
