@@ -18,7 +18,8 @@ const userNumero = document.getElementById("userNumero");
 const userRole = document.getElementById("userRole");
 
 const avatar = document.getElementById("avatar");
-const btnLogCad = document.getElementById("btnLogCad");
+const btn1lc = document.getElementById("btn1lc");
+const btn2lc = document.getElementById("btn2lc");
 
 let userCpfFormatted = "";
 
@@ -29,11 +30,8 @@ if (userSession){
 const noAcess = document.getElementById("noAcess");
 
 if (userSession) {
-    // console.log(userSession.cpf);
-    // console.log(userSession.role);
-    
     if(userCpf){
-        btnDisplay.style.display = "block"
+        btnDisplay.style.display = "block";
         // userFoto.src = userSession.foto;
         userCpf.textContent = userCpfFormatted;
         userNome.textContent = userSession.nome;
@@ -46,11 +44,13 @@ if (userSession) {
         userNumero.textContent = userSession.numero;
 
         userRole.textContent = userSession.role.charAt(0).toUpperCase() + userSession.role.slice(1);
+
     }
 } else {
     noAcess.style.display = "block";
     avatar.style.display = "none";
-    btnLogCad.style.display = "block";
+    btn1lc.style.display = "block";
+    btn2lc.style.display = "block";
 }
 
 

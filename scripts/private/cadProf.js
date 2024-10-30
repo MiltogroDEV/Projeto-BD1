@@ -1,5 +1,5 @@
-import { apiCall } from "../scripts/components/apicalls.js";
-import { showMessage } from "../scripts/components/showMessage.js";
+import { apiCall } from "/scripts/components/apicalls.js";
+import { showMessage } from "/scripts/components/showMessage.js";
 
 const inputNome = document.getElementById("inputNome");
 const inputCpf = document.getElementById("inputCPF");
@@ -100,10 +100,10 @@ async function cadastrar(){
         console.log(data);
 
         try{
-            attemptLoggin = await apiCall("/create/user", "POST", data);
+            const attemptLoggin = await apiCall("/create/user", "POST", data);
 
             if(attemptLoggin.success){
-                showMessage("sucess", "Login efetuado com sucesso!")
+                showMessage("success", "Conta cadastrada com sucesso!")
                 
                 setTimeout(() => {
                     window.location.href = "/Pages/login.html";
