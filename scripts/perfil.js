@@ -196,5 +196,5 @@ btnSalvarAlteracoes.addEventListener('click', atualizarDados);
 const btnLogout = document.getElementById("btnLogout");
 btnLogout.addEventListener('click', (e) => {
     localStorage.removeItem("userSession");
-    window.location.href = "/Pages/login.html";
+    window.location.href = "/pages/login.html";
 })

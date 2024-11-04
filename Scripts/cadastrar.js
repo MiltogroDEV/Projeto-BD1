@@ -107,7 +107,7 @@ async function cadastrar(e){
                 showMessage("success", "Conta cadastrada com sucesso!")
                 
                 setTimeout(() => {
-                    window.location.href = "/Pages/login.html";
+                    window.location.href = "/pages/login.html";
                 }, 2000);
 
             } else if(attemptLoggin.error){

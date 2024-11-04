@@ -34,7 +34,7 @@
         <div class="spc3"></div>
 
         <div id="main">
-            <div id="mainn">
+            <div id="mainn" style="position: relative;">
                 <label for="basic-url" class="form-label">Imagens</label>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="bannerUpload">Banner</label>
@@ -130,7 +130,11 @@
                 <div class="spc1"></div>
 
                 <div style="display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-outline-success">Criar Evento</button>
+                    <div id="messageBox" class="popup alert" style="display: none; width: 80%;"></div>
+                </div>
+
+                <div style="display: flex; justify-content: center;">
+                    <button id="btnCriarEvento2" type="button" class="btn btn-outline-success">Criar Evento</button>
                 </div>
 
                 <div class="spc3"></div>

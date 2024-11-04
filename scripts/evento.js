@@ -4,10 +4,10 @@ import { showMessage } from "../scripts/components/showMessage.js";
 let bannerBase64 = '';
 let thumbnailBase64 = '';
 
-const btnCriarEvento = document.getElementById("btnCriarEvento");
+const btnCriarEvento1 = document.getElementById("btnCriarEvento1");
 
-if (btnCriarEvento) {
-    btnCriarEvento.addEventListener('click', () => {
+if (btnCriarEvento1) {
+    btnCriarEvento1.addEventListener('click', () => {
         window.location.href = "/pages/adm/criarEventos.html";
     });
 }
@@ -93,8 +93,6 @@ const eventoDataFim = document.getElementById('eventoDataFim');
 const eventoHoraInicio = document.getElementById('eventoHoraInicio');
 const eventoHoraFim = document.getElementById('eventoHoraFim');
 
-const eventoBanner = bannerBase64;
-const eventoMiniatura = thumbnailBase64;
 const eventoDataHoraInicio = `${eventoDataInicio}T${eventoHoraInicio}:00.000Z`
 const eventoDataHoraFim = `${eventoDataFim}T${eventoHoraFim}:00.000Z`
 const eventoNome = document.getElementById('tituloEvento');
@@ -110,44 +108,38 @@ async function criarEvento(e) {
     e.preventDefault();
 
     if (!eventoDataInicio.value || !eventoHoraInicio.value || !eventoDataFim.value || !eventoHoraFim.value) {
-        showMessage("error", "Data e hora de início e fim são obrigatórias!");
+        showMessage("error", "Informações inválidas!");
 
         if (!eventoDataInicio.value) {
             eventoDataInicio.value = "";
-        }
-        if (!eventoHoraInicio.value) {
+        } if (!eventoHoraInicio.value) {
             eventoHoraInicio.value = "";
-        }
-        if (!eventoDataFim.value) {
+        } if (!eventoDataFim.value) {
             eventoDataFim.value = "";
-        }
-        if (!eventoHoraFim.value) {
+        } if (!eventoHoraFim.value) {
             eventoHoraFim.value = "";
         }
     } else {
-        const eventoDataHoraInicio = `${eventoDataInicio.value}T${eventoHoraInicio.value}:00.000Z`;
-        const eventoDataHoraFim = `${eventoDataFim.value}T${eventoHoraFim.value}:00.000Z`;
-
-        const eventoInfo = {
+        const data = {
             nome: `${eventoNome.value}`,
             descricao: `${eventoDesc.value}`,
             instituicao: `${eventoInst.value}`,
-            dataHoraInicio: `${eventoDataHoraInicio}`,
-            dataHoraFim: `${eventoDataHoraFim}`,
+            datainicio: `${eventoDataHoraInicio}`,
+            datafim: `${eventoDataHoraFim}`,
             rua: `${eventoRua.value}`,
             numero: `${eventoNumero.value}`,
             bairro: `${eventoBairro.value}`,
             cidade: `${eventoCidade.value}`,
             estado: `${eventoEstado.value}`,
-            banner: `${eventoBanner}`,
-            miniatura: `${eventoMiniatura}`
+            banner: `${bannerBase64}`,
+            miniatura: `${thumbnailBase64}`
         };
 
-        console.log(eventoInfo);
+        console.log(data);
 
         try {
             console.log("Tentando criar evento..."); // Remover depois
-            const response = await apiCall("/eventos", "POST", eventoInfo);
+            const response = await apiCall("/eventos", "POST", data);
             if (response.success) {
                 showMessage("success", "Evento criado com sucesso!");
 
@@ -177,8 +169,5 @@ async function criarEvento(e) {
     }
 }
 
-
-// const imagemBase64 = document.getElementById("imagemBase64");
-// setInterval((e) => {
-//     imagemBase64.src = bannerBase64;
-// }, 100);
+const btnCriarEvento2 = document.getElementById("btnCriarEvento2");
+btnCriarEvento2.addEventListener('click', criarEvento);

@@ -63,11 +63,11 @@ async function login(e){
 
                 setTimeout(() => {
                     if (userSession.role === "administrador") {
-                        window.location.href = "../Pages/adm/homeAdm.html";
+                        window.location.href = "../pages/adm/homeAdm.html";
                     } else if (userSession.role === "professor") {
-                        window.location.href = "../Pages/professor/homeProf.html";
+                        window.location.href = "../pages/professor/homeProf.html";
                     } else {
-                        window.location.href = "../Pages/participante/homePart.html";
+                        window.location.href = "../pages/participante/homePart.html";
                     }
                 }, 2000);
             } else {
