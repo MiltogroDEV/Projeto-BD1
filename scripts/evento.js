@@ -135,11 +135,9 @@ async function criarEvento(e) {
             miniatura: `${thumbnailBase64}`
         };
 
-        console.log(data);
-
         try {
             console.log("Tentando criar evento..."); // Remover depois
-            const response = await apiCall("/eventos", "POST", data);
+            const response = await apiCall("/create/event", "POST", data);
             if (response.success) {
                 showMessage("success", "Evento criado com sucesso!");
 

@@ -65,11 +65,11 @@ const btnEventos = document.getElementById("btnEventos");
 btnInicio.addEventListener('click', (e) => {
     if (userSession){
         if (userSession.role === "administrador") {
-            window.location.href = "/Pages/adm/homeAdm.html";
+            window.location.href = "/pages/adm/homeAdm.html";
         } else if (userSession.role === "professor") {
-            window.location.href = "/Pages/professor/homeProf.html";
+            window.location.href = "/pages/professor/homeProf.html";
         } else if (userSession.role === "participante"){
-            window.location.href = "/Pages/participante/homePart.html";
+            window.location.href = "/pages/participante/homePart.html";
         }
     } else {
         window.location.href = "/index.html"
@@ -79,11 +79,11 @@ btnInicio.addEventListener('click', (e) => {
 btnEventos.addEventListener('click', (e) => {
     if (userSession){
         if (userSession.role === "administrador") {
-            window.location.href = "/Pages/adm/eventosAdm.html";
+            window.location.href = "/pages/adm/eventosAdm.html";
         } else if (userSession.role === "professor") {
-            window.location.href = "/Pages/professor/eventosProf.html";
+            window.location.href = "/pages/professor/eventosProf.html";
         } else if (userSession.role === "participante"){
-            window.location.href = "/Pages/participante/eventosPart.html";
+            window.location.href = "/pages/participante/eventosPart.html";
         }
     } else {
         window.location.href = "/pages/eventos.html"
