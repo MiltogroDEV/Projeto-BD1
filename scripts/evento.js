@@ -1,3 +1,6 @@
+import { apiCall } from "../scripts/components/apicalls.js";
+import { showMessage } from "../scripts/components/showMessage.js";
+
 let bannerBase64 = '';
 let thumbnailBase64 = '';
 
@@ -84,3 +87,98 @@ cropThumbnailBtn.addEventListener('click', () => {
 
     thumbnailCropper.destroy();
 });
+
+const eventoDataInicio = document.getElementById('eventoDataInicio');
+const eventoDataFim = document.getElementById('eventoDataFim');
+const eventoHoraInicio = document.getElementById('eventoHoraInicio');
+const eventoHoraFim = document.getElementById('eventoHoraFim');
+
+const eventoBanner = bannerBase64;
+const eventoMiniatura = thumbnailBase64;
+const eventoDataHoraInicio = `${eventoDataInicio}T${eventoHoraInicio}:00.000Z`
+const eventoDataHoraFim = `${eventoDataFim}T${eventoHoraFim}:00.000Z`
+const eventoNome = document.getElementById('tituloEvento');
+const eventoDesc = document.getElementById('descEvento');
+const eventoInst = document.getElementById('instEvento');
+const eventoRua = document.getElementById('ruaEvento');
+const eventoBairro = document.getElementById('bairroEvento');
+const eventoNumero = document.getElementById('numeroEvento');
+const eventoCidade = document.getElementById('cidadeEvento');
+const eventoEstado = document.getElementById('estadoEvento');
+
+async function criarEvento(e) {
+    e.preventDefault();
+
+    if (!eventoDataInicio.value || !eventoHoraInicio.value || !eventoDataFim.value || !eventoHoraFim.value) {
+        showMessage("error", "Data e hora de início e fim são obrigatórias!");
+
+        if (!eventoDataInicio.value) {
+            eventoDataInicio.value = "";
+        }
+        if (!eventoHoraInicio.value) {
+            eventoHoraInicio.value = "";
+        }
+        if (!eventoDataFim.value) {
+            eventoDataFim.value = "";
+        }
+        if (!eventoHoraFim.value) {
+            eventoHoraFim.value = "";
+        }
+    } else {
+        const eventoDataHoraInicio = `${eventoDataInicio.value}T${eventoHoraInicio.value}:00.000Z`;
+        const eventoDataHoraFim = `${eventoDataFim.value}T${eventoHoraFim.value}:00.000Z`;
+
+        const eventoInfo = {
+            nome: `${eventoNome.value}`,
+            descricao: `${eventoDesc.value}`,
+            instituicao: `${eventoInst.value}`,
+            dataHoraInicio: `${eventoDataHoraInicio}`,
+            dataHoraFim: `${eventoDataHoraFim}`,
+            rua: `${eventoRua.value}`,
+            numero: `${eventoNumero.value}`,
+            bairro: `${eventoBairro.value}`,
+            cidade: `${eventoCidade.value}`,
+            estado: `${eventoEstado.value}`,
+            banner: `${eventoBanner}`,
+            miniatura: `${eventoMiniatura}`
+        };
+
+        console.log(eventoInfo);
+
+        try {
+            console.log("Tentando criar evento..."); // Remover depois
+            const response = await apiCall("/eventos", "POST", eventoInfo);
+            if (response.success) {
+                showMessage("success", "Evento criado com sucesso!");
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            } else {
+                showMessage("error", "Erro ao criar evento!");
+
+                eventoNome.value = "";
+                eventoDesc.value = "";
+                eventoInst.value = "";
+                eventoRua.value = "";
+                eventoBairro.value = "";
+                eventoNumero.value = "";
+                eventoCidade.value = "";
+                eventoEstado.value = "";
+                eventoDataInicio.value = "";
+                eventoHoraInicio.value = "";
+                eventoDataFim.value = "";
+                eventoHoraFim.value = "";
+            }
+        } catch (e) {
+            console.log(e);
+            showMessage("error", "Ocorreu um erro ao criar o evento!");
+        }
+    }
+}
+
+
+// const imagemBase64 = document.getElementById("imagemBase64");
+// setInterval((e) => {
+//     imagemBase64.src = bannerBase64;
+// }, 100);
