@@ -23,8 +23,12 @@
                 </div>
     
                 <div class="d-flex">
-                    <a href="/Pages/login.html" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="/Pages/cadastro.html" class="btn btn-primary">Cadastro</a>
+                    <a id="btnlc1" href="/pages/login.html" style="display: none;" class="btn btn-outline-primary me-2">Login</a>
+                    <a id="btnlc2" href="/pages/cadastro.html" style="display: none;" class="btn btn-primary">Cadastro</a>
+                </div>
+
+                <div id="avatar">
+                    <span class="avatar avatarBg"><img style="width: 60%; height: 60%;" src="/img/icons/avatar.png" alt=""></span>
                 </div>
             </div>
         </nav>
@@ -33,21 +37,42 @@
         
         <div id="main">
             <div id="mainn">
-                <div>
-                    <div class="divFotoMinicurso">
-                        <img src="/img/cursos/03.jpg" class="fotoMinicurso" alt="Blog"/>
+                <div id="divMudarDisplay">
+                    <div>
+                        <div class="divFotoMinicurso">
+                            <img src="/img/cursos/03.jpg" class="fotoMinicurso" alt="Blog"/>
+                        </div>
+                        
+                        <h4 class="tipo">Tecnologia</h4>
+                        <h1 class="titulo"><strong>Criação de apps com FlutterFlow.</strong><h1>
+                        <h3 class="desc">Neste minicurso iremos abordar noções básicas de Banco de Dados com foco no PostreSQL realizando integração com uma aplicação desenvolvida em Python.</h3>
                     </div>
+                        
+                    <div class="spc2"></div>
                     
-                    <h4 class="tipo">Tecnologia</h4>
-                    <h1 class="titulo"><strong>Criação de apps com FlutterFlow.</strong><h1>
-                    <h3 class="desc">Neste minicurso iremos abordar noções básicas de Banco de Dados com foco no PostreSQL realizando integração com uma aplicação desenvolvida em Python.</h3>
+                    <div id="btnInscrever" class="divCenterButton">
+                        <button id="subBtn" class="btn btn-outline-success">Inscrever-se</button>
+                    </div>
+                </div>
+
+                <div id="btnTutor" style="position: fixed; bottom: 20px; right: 20px;" class="animate-bounce">
+                    <button id="btnProf" type="button" class="btn btn-primary">Deseja ser um tutor?</button>
                 </div>
                     
-                <div class="spc2"></div>
-                
-                <div class="divCenterButton">
-                    <button class="btn btn-outline-primary subBtn">Faça login ou cadastre-se para se inscrever</button>
+                <div id="noAcess" class="blankslate" style="display: none;">
+                    <img class="blankslate-top-img" src="/img/icons/noAcess.png" />
+                    <div class="blankslate-body">
+                        <h4>Você não tem acesso a essa página</h4>
+                        <p>
+                            Clique abaixo para redirecionar-mos à página correta
+                        </p>
+                        <div class="blankslate-actions">
+                            <button id="redirecionar" class="btn btn-primary" type="button">Me redirecione</button>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="spc3"></div>
                     
             </div>
         </div>
@@ -59,5 +84,62 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script>
+            const avatar = document.getElementById("avatar");
+            avatar.addEventListener('click', (e) => {
+                window.location.href = "/pages/perfil.html"
+            });
+
+            const userSession = JSON.parse(localStorage.getItem("userSession"));
+            const divMudarDisplay = document.getElementById("divMudarDisplay");
+            const btnlc1 = document.getElementById("btnlc1");
+            const btnlc2 = document.getElementById("btnlc2");
+            const noAcess = document.getElementById("noAcess");
+            
+            const btnTutor = document.getElementById("btnTutor");
+
+            if (userSession) {
+                if (userSession.role == "administrador" || userSession.role == "professor"){
+                    divMudarDisplay.style.display = "block";
+                    noAcess.style.display = "none";
+                    avatar.style.display = "block";
+                    btnlc1.style.display = "none";
+                    btnlc2.style.display = "none";
+                    btnTutor.style.display = "none";
+                    btnInscrever.style.display = "none";
+                } else if (userSession.role == "participante"){
+                    divMudarDisplay.style.display = "block";
+                    noAcess.style.display = "none";
+                    avatar.style.display = "block";
+                    btnlc1.style.display = "none";
+                    btnlc2.style.display = "none";
+                    btnTutor.style.display = "block";
+                    btnInscrever.style.display = "flex";
+                } else {
+                    divMudarDisplay.style.display = "none";
+                    noAcess.style.display = "block";
+                    avatar.style.display = "none";
+                    btnlc1.style.display = "block";
+                    btnlc2.style.display = "block";
+                    btnTutor.style.display = "none";
+                    btnInscrever.style.display = "none";
+                }
+            } else {
+                divMudarDisplay.style.display = "none";
+                noAcess.style.display = "block";
+                avatar.style.display = "none";
+                btnlc1.style.display = "block";
+                btnlc2.style.display = "block";
+                btnTutor.style.display = "none";
+                btnInscrever.style.display = "none";
+            }
+
+            const redirecionar = document.getElementById("redirecionar");
+            redirecionar.addEventListener('click', (e) => {
+                setTimeout((e) => {
+                    window.location.href = "/pages/login.html";
+                }, 1000);
+            });
+        </script>
     </body>
 </html>

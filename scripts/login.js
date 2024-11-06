@@ -62,16 +62,10 @@ async function login(e){
                 localStorage.setItem("userSession", JSON.stringify(userSession));
 
                 setTimeout(() => {
-                    if (userSession.role === "administrador") {
-                        window.location.href = "../pages/adm/homeAdm.html";
-                    } else if (userSession.role === "professor") {
-                        window.location.href = "../pages/professor/homeProf.html";
-                    } else {
-                        window.location.href = "../pages/participante/homePart.html";
-                    }
+                    window.location.href = "/index.html";
                 }, 2000);
-            } else {
-                showMessage("error", "Credenciais inválidas!");
+            } else if (attemptLoggin.error) {
+                showMessage("error", `${attemptLoggin.error}`);
 
                 inputCpf.value = "";
                 senha.value = "";

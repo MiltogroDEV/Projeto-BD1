@@ -63,31 +63,15 @@ const btnInicio = document.getElementById("btnInicio");
 const btnEventos = document.getElementById("btnEventos");
 
 btnInicio.addEventListener('click', (e) => {
-    if (userSession){
-        if (userSession.role === "administrador") {
-            window.location.href = "/pages/adm/homeAdm.html";
-        } else if (userSession.role === "professor") {
-            window.location.href = "/pages/professor/homeProf.html";
-        } else if (userSession.role === "participante"){
-            window.location.href = "/pages/participante/homePart.html";
-        }
-    } else {
+    setInterval(() => {
         window.location.href = "/index.html"
-    }
+    }, 0);
 });
 
 btnEventos.addEventListener('click', (e) => {
-    if (userSession){
-        if (userSession.role === "administrador") {
-            window.location.href = "/pages/adm/eventosAdm.html";
-        } else if (userSession.role === "professor") {
-            window.location.href = "/pages/professor/eventosProf.html";
-        } else if (userSession.role === "participante"){
-            window.location.href = "/pages/participante/eventosPart.html";
-        }
-    } else {
+    setInterval(() => {
         window.location.href = "/pages/eventos.html"
-    }
+    }, 0);
 });
 
 const editNome = document.getElementById("editNome");
