@@ -27,8 +27,8 @@
                     <a id="btnlc2" href="/pages/cadastro.html" style="display: none;" class="btn btn-primary">Cadastro</a>
                 </div>
 
-                <div id="avatar">
-                    <span class="avatar avatarBg"><img style="width: 60%; height: 60%;" src="/img/icons/avatar.png" alt=""></span>
+                <div>
+                    <span class="avatar avatarBg"><img id="avatar" style="width: 60%; height: 60%;" alt=""></span>
                 </div>
                 
             </div>
@@ -216,6 +216,12 @@
                     btnlc1.style.display = "block";
                     btnlc2.style.display = "block";
                     btnTutor.style.display = "none";
+                }
+
+                if (userSession.foto == "Default"){
+                    avatar.src = "/img/icons/avatar.png";
+                } else if (userSession.foto != "Default"){
+                    avatar.src == userSession.foto;
                 }
             } else {
                 divMudarDisplay.style.display = "none";

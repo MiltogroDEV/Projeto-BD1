@@ -46,6 +46,11 @@ if (userSession) {
 
         userRole.textContent = userSession.role.charAt(0).toUpperCase() + userSession.role.slice(1);
 
+        if (userSession.foto == "Default"){
+            avatar.src = "/img/icons/avatar.png";
+        } else if (userSession.foto != "Default"){
+            avatar.src == userSession.foto;
+        }
     }
 } else {
     noAcess.style.display = "block";
