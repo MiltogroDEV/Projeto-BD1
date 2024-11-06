@@ -211,7 +211,11 @@
             const redirecionar = document.getElementById("redirecionar");
             redirecionar.addEventListener('click', (e) => {
                 setTimeout((e) => {
-                    window.location.href = "/pages/login.html";
+                    if (userSession.role == "professor" || userSession.role == "participante"){
+                        window.location.href = "/pages/home.html";
+                    } else {
+                        window.location.href = "/pages/login.html";
+                    }
                 }, 1000);
             });
         </script>
