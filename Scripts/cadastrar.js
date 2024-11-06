@@ -12,6 +12,7 @@ const inputBairro = document.getElementById("inputBairro");
 const inputNumero = document.getElementById("inputNumero");
 const inputSenha1 = document.getElementById("inputSenha1");
 const inputSenha2 = document.getElementById("inputSenha2");
+const inputRole = document.getElementById("inputRole");
 const termosCondicoes = document.getElementById("termosCondicoes");
 
 let userCpf;
@@ -82,6 +83,16 @@ async function cadastrar(e){
         showMessage("warning", "Para continuar, aceite os termos e condições.");
     } else {
 
+        let role;
+
+        if (inputRole.value == "Participante"){
+            role = "PARTICIPANT";
+        } else if (inputRole.value == "Professor"){
+            role = "PROFESSOR";
+        } else if (inputRole.value == "Criador de eventos"){
+            role = "ADM";
+        }
+
         const data = {
             "cpf": `${userCpf}`,
             "nome": `${inputNome.value}`,
@@ -94,8 +105,7 @@ async function cadastrar(e){
             "bairro": `${inputBairro.value}`,
             "cidade": `${inputCidade.value}`,
             "estado": `${inputEstado.value}`,
-            "role": "PARTICIPANT",
-            // "role": "ADM",
+            "role": `${role}`
         }
 
         console.log(data);

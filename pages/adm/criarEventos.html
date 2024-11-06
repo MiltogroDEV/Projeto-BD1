@@ -35,106 +35,121 @@
 
         <div id="main">
             <div id="mainn" style="position: relative;">
-                <label for="basic-url" class="form-label">Imagens</label>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="bannerUpload">Banner</label>
-                    <input type="file" class="form-control" id="bannerUpload" accept="image/*">
-                </div>
-                <img id="bannerImage" style="max-width: 100%; display: none;" alt="Prévia do Banner">
-                <button id="cropBannerBtn" class="font1" style="display: none;">Cortar Banner</button>
-
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="thumbnailUpload">Miniatura</label>
-                    <input type="file" class="form-control" id="thumbnailUpload" accept="image/*">
-                </div>
-                <img id="thumbnailImage" style="max-width: 100%; display: none;" alt="Prévia da Miniatura">
-                <button id="cropThumbnailBtn" class="font1" style="display: none;">Cortar Miniatura</button>
-
-                <br><label for="basic-url" class="form-label">Informações do Evento</label>
-
-                <div>
+                <div id="formCriarEvento">
+                    <label for="basic-url" class="form-label">Imagens</label>
                     <div class="input-group mb-3">
-                        <label class="input-group-text" for="eventDate">Data e hora de Início</label>
-                        <input type="date" class="form-control" id="eventoDataInicio" name="eventoDataInicio" required>
-                        
-                        <input type="time" class="form-control" id="eventoHoraInicio" name="eventoDataInicio" required>
+                        <label class="input-group-text" for="bannerUpload">Banner</label>
+                        <input type="file" class="form-control" id="bannerUpload" accept="image/*">
+                    </div>
+                    <img id="bannerImage" style="max-width: 100%; display: none;" alt="Prévia do Banner">
+                    <button id="cropBannerBtn" class="font1" style="display: none;">Cortar Banner</button>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="thumbnailUpload">Miniatura</label>
+                        <input type="file" class="form-control" id="thumbnailUpload" accept="image/*">
+                    </div>
+                    <img id="thumbnailImage" style="max-width: 100%; display: none;" alt="Prévia da Miniatura">
+                    <button id="cropThumbnailBtn" class="font1" style="display: none;">Cortar Miniatura</button>
+
+                    <br><label for="basic-url" class="form-label">Informações do Evento</label>
+
+                    <div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="eventDate">Data e hora de Início</label>
+                            <input type="date" class="form-control" id="eventoDataInicio" name="eventoDataInicio" required>
+                            
+                            <input type="time" class="form-control" id="eventoHoraInicio" name="eventoDataInicio" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="eventDate">Data e hora do Fim</label>
+                            <input type="date" class="form-control" id="eventoDataFim" name="eventoDataFim" required>
+                            
+                            <input type="time" class="form-control" id="eventoHoraFim" name="eventoDataFim" required>
+                        </div>
                     </div>
                     <div class="input-group mb-3">
-                        <label class="input-group-text" for="eventDate">Data e hora do Fim</label>
-                        <input type="date" class="form-control" id="eventoDataFim" name="eventoDataFim" required>
-                        
-                        <input type="time" class="form-control" id="eventoHoraFim" name="eventoDataFim" required>
+                        <span class="input-group-text" id="basic-addon3">Título</span>
+                        <input type="text" class="form-control" id="tituloEvento" aria-describedby="basic-addon3" required>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Título</span>
-                    <input type="text" class="form-control" id="tituloEvento" aria-describedby="basic-addon3" required>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text">Descrição</span>
-                    <textarea id="descEvento" class="form-control" maxlength="255" aria-label="Digite uma descrição do evento"></textarea>
-                </div>
-                
-                <br><label for="basic-url" class="form-label">Endereço</label>
-                
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Instituição</span>
-                    <input type="text" class="form-control" id="instEvento" aria-describedby="basic-addon3" required>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Rua</span>
-                    <input type="text" class="form-control" id="ruaEvento" aria-describedby="basic-addon3" required>
-                    <span class="input-group-text" id="basic-addon3">Bairro</span>
-                    <input type="text" class="form-control" id="bairroEvento" aria-describedby="basic-addon3" required>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Numero</span>
-                    <input type="text" class="form-control" id="numeroEvento" aria-describedby="basic-addon3" required>
-                    <span class="input-group-text" id="basic-addon3">Cidade</span>
-                    <input type="text" class="form-control" id="cidadeEvento" aria-describedby="basic-addon3" required>
+                    <div class="input-group">
+                        <span class="input-group-text">Descrição</span>
+                        <textarea id="descEvento" class="form-control" maxlength="255" aria-label="Digite uma descrição do evento"></textarea>
+                    </div>
                     
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Estado</span>
-                    <select class="form-select" id="estadoEvento" required>
-                        <option>Acre</option>
-                        <option>Alagoas</option>
-                        <option>Amapá</option>
-                        <option>Amazonas</option>
-                        <option>Bahia</option>
-                        <option>Ceará</option>
-                        <option>Distrito Federal</option>
-                        <option>Espírito Santo</option>
-                        <option>Goiás</option>
-                        <option>Maranhão</option>
-                        <option>Mato Grosso</option>
-                        <option>Mato Grosso do Sul</option>
-                        <option>Minas Gerais</option>
-                        <option>Pará</option>
-                        <option>Paraíba</option>
-                        <option>Paraná</option>
-                        <option>Pernambuco</option>
-                        <option>Piauí</option>
-                        <option>Rio de Janeiro</option>
-                        <option>Rio Grande do Norte</option>
-                        <option>Rio Grande do Sul</option>
-                        <option>Rondônia</option>
-                        <option>Roraima</option>
-                        <option>Santa Catarina</option>
-                        <option>São Paulo</option>
-                        <option>Sergipe</option>
-                        <option>Tocantins</option>
-                    </select>
+                    <br><label for="basic-url" class="form-label">Endereço</label>
+                    
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Instituição</span>
+                        <input type="text" class="form-control" id="instEvento" aria-describedby="basic-addon3" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Rua</span>
+                        <input type="text" class="form-control" id="ruaEvento" aria-describedby="basic-addon3" required>
+                        <span class="input-group-text" id="basic-addon3">Bairro</span>
+                        <input type="text" class="form-control" id="bairroEvento" aria-describedby="basic-addon3" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Numero</span>
+                        <input type="text" class="form-control" id="numeroEvento" aria-describedby="basic-addon3" required>
+                        <span class="input-group-text" id="basic-addon3">Cidade</span>
+                        <input type="text" class="form-control" id="cidadeEvento" aria-describedby="basic-addon3" required>
+                        
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Estado</span>
+                        <select class="form-select" id="estadoEvento" required>
+                            <option>Acre</option>
+                            <option>Alagoas</option>
+                            <option>Amapá</option>
+                            <option>Amazonas</option>
+                            <option>Bahia</option>
+                            <option>Ceará</option>
+                            <option>Distrito Federal</option>
+                            <option>Espírito Santo</option>
+                            <option>Goiás</option>
+                            <option>Maranhão</option>
+                            <option>Mato Grosso</option>
+                            <option>Mato Grosso do Sul</option>
+                            <option>Minas Gerais</option>
+                            <option>Pará</option>
+                            <option>Paraíba</option>
+                            <option>Paraná</option>
+                            <option>Pernambuco</option>
+                            <option>Piauí</option>
+                            <option>Rio de Janeiro</option>
+                            <option>Rio Grande do Norte</option>
+                            <option>Rio Grande do Sul</option>
+                            <option>Rondônia</option>
+                            <option>Roraima</option>
+                            <option>Santa Catarina</option>
+                            <option>São Paulo</option>
+                            <option>Sergipe</option>
+                            <option>Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="spc1"></div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <div id="messageBox" class="popup alert" style="display: none; width: 80%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <button id="btnCriarEvento2" type="button" class="btn btn-outline-success">Criar Evento</button>
+                    </div>
                 </div>
 
-                <div class="spc1"></div>
-
-                <div style="display: flex; justify-content: center;">
-                    <div id="messageBox" class="popup alert" style="display: none; width: 80%;"></div>
-                </div>
-
-                <div style="display: flex; justify-content: center;">
-                    <button id="btnCriarEvento2" type="button" class="btn btn-outline-success">Criar Evento</button>
+                <div id="noAcess" class="blankslate" style="display: none;">
+                    <img class="blankslate-top-img" src="/img/icons/noAcess.png" />
+                    <div class="blankslate-body">
+                        <h4>Você não tem acesso a essa página</h4>
+                        <p>
+                            Clique abaixo para redirecionar-mos à página correta
+                        </p>
+                        <div class="blankslate-actions">
+                            <button id="redirecionar" class="btn btn-primary" type="button">Me redirecione</button>
+                          </div>
+                    </div>
                 </div>
 
                 <div class="spc3"></div>
@@ -156,7 +171,38 @@
             const avatar = document.getElementById("avatar")
             avatar.addEventListener('click', (e) => {
                 window.location.href = "/pages/perfil.html"
-            })
+            });
+
+            const userSession = JSON.parse(localStorage.getItem("userSession"));
+            const formCriarEvento = document.getElementById("formCriarEvento");
+            const noAcess = document.getElementById("noAcess");
+
+            if (userSession) {
+                if (userSession.role === "administrador"){
+                    formCriarEvento.style.display = "block";
+                    avatar.style.display = "block";
+                    noAcess.style.display = "none";
+                } else {
+                    formCriarEvento.style.display = "none";
+                    noAcess.style.display = "block";
+                    avatar.style.display = "none";
+                }
+            } else {
+                formCriarEvento.style.display = "none";
+                noAcess.style.display = "block";
+                avatar.style.display = "none";
+            }
+
+            const redirecionar = document.getElementById("redirecionar");
+            redirecionar.addEventListener('click', (e) => {
+                if (userSession.role === "professor"){
+                    window.location.href = "/pages/professor/eventosProf.html"
+                } else if (userSession.role === "participante"){
+                    window.location.href = "/pages/professor/eventosPart.html"
+                } else {
+                    window.location.href = "/pages/login.html"
+                }
+            });
         </script>
     </body>
 </html>

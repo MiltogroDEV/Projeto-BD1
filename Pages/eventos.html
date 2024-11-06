@@ -23,8 +23,12 @@
                 </div>
     
                 <div class="d-flex">
-                    <a href="/Pages/login.html" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="/Pages/cadastro.html" class="btn btn-primary">Cadastro</a>
+                    <a id="btnlc1" href="/Pages/login.html" style="display: none;" class="btn btn-outline-primary me-2">Login</a>
+                    <a id="btnlc2" href="/Pages/cadastro.html" style="display: none;" class="btn btn-primary">Cadastro</a>
+                </div>
+
+                <div id="avatar">
+                    <span class="avatar avatarBg"><img style="width: 60%; height: 60%;" src="/img/icons/avatar.png" alt=""></span>
                 </div>
                 
             </div>
@@ -34,30 +38,55 @@
 
         <div id="main">
             <div id="mainn">
-                <section class="blog-area pb-5">
-                    <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-8 col-sm-10">
-                            <div class="single-blog blog-style-one">
-                                <div class="blog-image">
-                                    <a href="/Pages/evento/sacc.html">
-                                        <img src="/img/eventos/01.png" class="imgCursos" alt="Blog"/>
-                                    </a>
-                                    <a href="/Pages/evento/sacc.html" class="category">Tecnologia</a>
-                                </div>
-                                <div class="blog-content">
-                                    <h5 class="blog-title">
+                <div id="divMudarDisplay">
+                    <section class="blog-area pb-5">
+                        <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-8 col-sm-10">
+                                <div class="single-blog blog-style-one">
+                                    <div class="blog-image">
                                         <a href="/Pages/evento/sacc.html">
-                                            III Semana acadêmica de Ciência da Computação.
+                                            <img src="/img/eventos/01.png" class="imgCursos" alt="Blog"/>
                                         </a>
-                                    </h5>
-                                    <p class="text">
-                                        Neste evento iremos realizar minicursos sobre tecnologia e didáticas para entender o que nosso curso oferece.
-                                    </p>
+                                        <a href="/Pages/evento/sacc.html" class="category">Tecnologia</a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h5 class="blog-title">
+                                            <a href="/Pages/evento/sacc.html">
+                                                III Semana acadêmica de Ciência da Computação.
+                                            </a>
+                                        </h5>
+                                        <p class="text">
+                                            Neste evento iremos realizar minicursos sobre tecnologia e didáticas para entender o que nosso curso oferece.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divCriarEvento" class="col-lg-4 col-md-8 col-sm-10" style="display: none;">
+                                <div class="single-blog blog-style-one" style="position: relative;">
+                                    <div>
+                                        <button id="btnCriarEvento1" style="width: 100%; height: 15vh;" type="button" class="btn btn-outline-primary">
+                                            Criar um novo Evento
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                </section>
+                    </section>
+                </div>
+
+                <div id="noAcess" class="blankslate" style="display: none;">
+                    <img class="blankslate-top-img" src="/img/icons/noAcess.png" />
+                    <div class="blankslate-body">
+                        <h4>Você não tem acesso a essa página</h4>
+                        <p>
+                            Clique abaixo para redirecionar-mos à página correta
+                        </p>
+                        <div class="blankslate-actions">
+                            <button id="redirecionar" class="btn btn-primary" type="button">Me redirecione</button>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="spc3"></div>
 
@@ -69,5 +98,52 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script type="module" src="/scripts/evento.js"></script>
+        <script>
+            const avatar = document.getElementById("avatar");
+            avatar.addEventListener('click', (e) => {
+                window.location.href = "/pages/perfil.html"
+            });
+
+            const userSession = JSON.parse(localStorage.getItem("userSession"));
+            const divMudarDisplay = document.getElementById("divMudarDisplay");
+            const btnlc1 = document.getElementById("btnlc1");
+            const btnlc2 = document.getElementById("btnlc2");
+            const noAcess = document.getElementById("noAcess");
+            
+            const divCriarEvento = document.getElementById("divCriarEvento");
+
+            if (userSession) {
+                if (userSession.role == "administrador" || userSession.role == "professor" || userSession.role == "participante"){
+                    divMudarDisplay.style.display = "block";
+                    noAcess.style.display = "none";
+                    avatar.style.display = "block";
+                    btnlc1.style.display = "none";
+                    btnlc2.style.display = "none";
+                    if (userSession.role == "administrador"){
+                        divCriarEvento.style.display = "block";
+                    }
+                } else {
+                    divMudarDisplay.style.display = "none";
+                    noAcess.style.display = "block";
+                    avatar.style.display = "none";
+                    btnlc1.style.display = "block";
+                    btnlc2.style.display = "block";
+                }
+            } else {
+                divMudarDisplay.style.display = "none";
+                noAcess.style.display = "block";
+                avatar.style.display = "none";
+                btnlc1.style.display = "block";
+                btnlc2.style.display = "block";
+            }
+
+            const redirecionar = document.getElementById("redirecionar");
+            redirecionar.addEventListener('click', (e) => {
+                setTimeout((e) => {
+                    window.location.href = "/pages/login.html";
+                }, 1000);
+            });
+        </script>
     </body>
 </html>

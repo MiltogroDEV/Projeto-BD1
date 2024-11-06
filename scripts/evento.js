@@ -142,7 +142,7 @@ async function criarEvento(e) {
                 showMessage("success", "Evento criado com sucesso!");
 
                 setTimeout(() => {
-                    window.location.reload();
+                    window.location.href = "/pages/adm/eventosAdm.html";
                 }, 2000);
             } else {
                 showMessage("error", "Erro ao criar evento!");
