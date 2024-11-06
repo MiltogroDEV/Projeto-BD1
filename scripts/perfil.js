@@ -6,7 +6,7 @@ const userSession = JSON.parse(localStorage.getItem("userSession"));
 const userDisplay = document.getElementById("userDisplay");
 const btnDisplay = document.getElementById("btnDisplay");
 
-// const userFoto = document.getElementById("userFoto");
+const userFoto = document.getElementById("userFoto");
 const userCpf = document.getElementById("userCpf");
 const userNome = document.getElementById("userNome");
 const userEmail = document.getElementById("userEmail");
@@ -48,8 +48,10 @@ if (userSession) {
 
         if (userSession.foto == "Default"){
             avatar.src = "/img/icons/avatar.png";
+            userFoto.src = "/img/icons/avatar.png"
         } else if (userSession.foto != "Default"){
             avatar.src == userSession.foto;
+            userFoto.src == userSession.foto;
         }
     }
 } else {
@@ -116,6 +118,8 @@ setInterval(() => {
     }
 }, 1);
 
+let croppedImageBase64;
+
 async function atualizarDados(e) {
     e.preventDefault();
 
@@ -135,17 +139,24 @@ async function atualizarDados(e) {
             editNumero.value = userSession.numero;
         }
     } else {
+        if (!croppedImageBase64) {
+            croppedImageBase64 = userSession.foto === "Default" ? "Default" : userSession.foto;
+        }
+
         const data = {
             "userCpf": `${userSession.cpf}`,
+            "nome": `${userSession.nome}`,
             "email": `${editEmail.value}`,
             "rua": `${editRua.value}`,
             "cidade": `${editCidade.value}`,
             "estado": `${editEstado.value}`,
             "bairro": `${editBairro.value}`,
             "numero": `${editNumero.value}`,
+            "foto": `${croppedImageBase64}`
         }
 
         try{
+            console.log(data)
             const attemptLoggin = await apiCall("/update/user", "PUT", data);
 
             if (attemptLoggin.success) {
@@ -157,6 +168,7 @@ async function atualizarDados(e) {
                 userSession.rua = editRua.value;
                 userSession.bairro = editBairro.value;
                 userSession.numero = editNumero.value;
+                userSession.foto = croppedImageBase64;
             
                 localStorage.setItem("userSession", JSON.stringify(userSession));
             
@@ -187,3 +199,53 @@ btnLogout.addEventListener('click', (e) => {
     localStorage.removeItem("userSession");
     window.location.href = "/pages/login.html";
 })
+
+const btnChangePhoto = document.getElementById("btnChangePhoto");
+const editFoto = document.getElementById("editFoto");
+let cropper;
+
+btnChangePhoto.style.display = "none";
+
+editFoto.addEventListener("change", () => {
+    if (editFoto.files && editFoto.files[0]) {
+        btnChangePhoto.style.display = "block";
+
+        const file = editFoto.files[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            const img = document.createElement("img");
+            img.id = "cropImage";
+            img.src = reader.result;
+
+            const modalBody = document.getElementById("cropContainer");
+            modalBody.innerHTML = "";
+            modalBody.appendChild(img);
+
+            cropper = new Cropper(img, {
+                aspectRatio: 1,
+                viewMode: 1,
+            });
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
+
+btnChangePhoto.addEventListener("click", () => {
+    if (cropper) {
+        const canvas = cropper.getCroppedCanvas();
+        croppedImageBase64 = canvas.toDataURL("image/png");
+
+        const cropImage = document.getElementById("cropImage");
+        if (cropImage) {
+            cropImage.remove();
+        }
+
+        cropper.destroy();
+        cropper = null;
+
+        btnChangePhoto.style.display = "none";
+    }
+});
+
