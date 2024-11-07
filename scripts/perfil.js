@@ -152,7 +152,7 @@ async function atualizarDados(e) {
             "estado": `${editEstado.value}`,
             "bairro": `${editBairro.value}`,
             "numero": `${editNumero.value}`,
-            "foto": `${croppedImageBase64}`
+            // "foto": `${croppedImageBase64}`
         }
 
         try{
