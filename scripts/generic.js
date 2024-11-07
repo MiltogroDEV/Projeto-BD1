@@ -10,9 +10,9 @@ const noAcess = document.getElementById("noAcess");
 const redirecionarAdm = document.getElementById("redirecionarAdm");
 const divMudarDisplayAdm = document.getElementById("divMudarDisplayAdm");
 const noAcessAdm = document.getElementById("noAcessAdm");
+const divAdmBtn = document.getElementById("divAdmBtn");
 
 const btnTutor = document.getElementById("btnTutor");
-const divAdmBtn = document.getElementById("divAdmBtn");
 const btnInscrever = document.getElementById("btnInscrever");
 const divCriarEvento = document.getElementById("divCriarEvento");
 
@@ -113,4 +113,102 @@ if (redirecionarAdm) {
             }
         }, 1000);
     });
+}
+
+// --------------------------------------------
+
+const modal = new bootstrap.Modal(document.getElementById("modalBody"));
+
+if (modal){
+    const admBtnEditarEvento = document.getElementById("admBtnEditarEvento");
+    const btnFecharModal = document.getElementById("btnFecharModal");
+    
+    admBtnEditarEvento.addEventListener("click", () => {
+        modal.show();
+    });
+    
+    btnFecharModal.addEventListener("click", () => {
+        modal.hide();
+    });
+    
+    // Inicialização dos elementos
+    const bannerUpload = document.getElementById("bannerUpload");
+    const bannerImage = document.getElementById("bannerImage");
+    const cropBannerBtn = document.getElementById("cropBannerBtn");
+
+    const thumbnailUpload = document.getElementById("thumbnailUpload");
+    const thumbnailImage = document.getElementById("thumbnailImage");
+    const cropThumbnailBtn = document.getElementById("cropThumbnailBtn");
+
+    let cropper; 
+
+    bannerUpload.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                bannerImage.src = reader.result;
+                bannerImage.style.display = "block";
+                cropBannerBtn.style.display = "inline";
+                initializeCropper(bannerImage, 900, 150);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    thumbnailUpload.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                thumbnailImage.src = reader.result;
+                thumbnailImage.style.display = "block";
+                cropThumbnailBtn.style.display = "inline";
+                initializeCropper(thumbnailImage, 800, 450);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function initializeCropper(imageElement, width, height) {
+        if (cropper) {
+            cropper.destroy();
+        }
+        cropper = new Cropper(imageElement, {
+            aspectRatio: width / height,
+            viewMode: 1,
+        });
+    }
+
+    cropBannerBtn.addEventListener("click", () => {
+        const croppedCanvas = cropper.getCroppedCanvas();
+        bannerImage.src = croppedCanvas.toDataURL("image/png");
+        finalizeCrop();
+    });
+
+    cropThumbnailBtn.addEventListener("click", () => {
+        const croppedCanvas = cropper.getCroppedCanvas();
+        thumbnailImage.src = croppedCanvas.toDataURL("image/png");
+        finalizeCrop();
+    });
+
+    function finalizeCrop() {
+        if (cropper) {
+            cropper.destroy();
+        }
+        cropBannerBtn.style.display = "none";
+        cropThumbnailBtn.style.display = "none";
+    }
+
+    let bannerBase64;
+    let thumbnailBase64;
+
+    document.getElementById("cropBannerBtn").addEventListener("click", () => {
+        bannerBase64 = cropper.getCroppedCanvas().toDataURL("image/png");
+    });
+
+    document.getElementById("cropThumbnailBtn").addEventListener("click", () => {
+        thumbnailBase64 = cropper.getCroppedCanvas().toDataURL("image/png");
+    });
+
 }
