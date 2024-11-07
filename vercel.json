@@ -1,16 +1,16 @@
 {
     "rewrites": [
-      { "destination": "/eventos", "source": "/pages/eventos.html" },
-      { "destination": "/cursos", "source": "/pages/cursos/01.html" },
-      { "destination": "/cursos/02", "source": "/pages/cursos/02.html" },
-      { "destination": "/cursos/03", "source": "/pages/cursos/03.html" },
-      { "destination": "/cursos/04", "source": "/pages/cursos/04.html" },
-      { "destination": "/cursos/05", "source": "/pages/cursos/05.html" },
-      { "destination": "/cursos/06", "source": "/pages/cursos/06.html" },
-      { "destination": "/sacc", "source": "/pages/sacc.html" },
-      { "destination": "/cadastro", "source": "/pages/cadastro.html" },
-      { "destination": "/criarEventos", "source": "/pages/criarEventos.html" },
-      { "destination": "/login", "source": "/pages/login.html" },
-      { "destination": "/perfil", "source": "/pages/perfil.html" }
+      { "source": "/pages/eventos.html", "destination": "/eventos" },
+      { "source": "/pages/cursos/01.html", "destination": "/cursos" },
+      { "source": "/pages/cursos/02.html", "destination": "/cursos/02" },
+      { "source": "/pages/cursos/03.html", "destination": "/cursos/03" },
+      { "source": "/pages/cursos/04.html", "destination": "/cursos/04" },
+      { "source": "/pages/cursos/05.html", "destination": "/cursos/05" },
+      { "source": "/pages/cursos/06.html", "destination": "/cursos/06" },
+      { "source": "/pages/sacc.html", "destination": "/sacc" },
+      { "source": "/pages/cadastro.html", "destination": "/cadastro" },
+      { "source": "/pages/criarEventos.html", "destination": "/criarEventos" },
+      { "source": "/pages/login.html", "destination": "/login" },
+      { "source": "/pages/perfil.html", "destination": "/perfil" }
     ]
   }
