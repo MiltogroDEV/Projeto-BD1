@@ -33,7 +33,10 @@ if (userSession) {
 
     if (userCpf){
         btnDisplay.style.display = "block";
-        // userFoto.src = userSession.foto;
+        userFoto.src = userSession.foto;
+        avatar.src == userSession.foto;
+        
+        userFoto.style.borderRadius = "100vh";
         userCpf.textContent = userCpfFormatted;
         userNome.textContent = userSession.nome;
         userEmail.textContent = userSession.email;
@@ -45,14 +48,6 @@ if (userSession) {
         userNumero.textContent = userSession.numero;
 
         userRole.textContent = userSession.role.charAt(0).toUpperCase() + userSession.role.slice(1);
-
-        if (userSession.foto == "Default"){
-            avatar.src = "/img/icons/avatar.png";
-            userFoto.src = "/img/icons/avatar.png"
-        } else if (userSession.foto != "Default"){
-            avatar.src == userSession.foto;
-            userFoto.src == userSession.foto;
-        }
     }
 } else {
     noAcess.style.display = "block";
@@ -152,7 +147,7 @@ async function atualizarDados(e) {
             "estado": `${editEstado.value}`,
             "bairro": `${editBairro.value}`,
             "numero": `${editNumero.value}`,
-            // "foto": `${croppedImageBase64}`
+            "foto": `${croppedImageBase64}`
         }
 
         try{

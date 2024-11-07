@@ -172,3 +172,43 @@ if (window.location.href == "/pages/criarEventos.html"){
     const btnCriarEvento2 = document.getElementById("btnCriarEvento2");
     btnCriarEvento2.addEventListener('click', criarEvento);
 }
+
+// -----------------------------------------
+
+async function listarEventos() {
+    try {
+        const eventos = await apiCall('/eventos', 'GET');
+
+        const container = document.getElementById('adicionarEventos');
+
+        // container.innerHTML = '';
+
+        eventos.forEach(evento => {
+            const eventoDiv = document.createElement('div');
+            eventoDiv.classList.add('col-lg-4', 'col-md-8', 'col-sm-10');
+
+            eventoDiv.innerHTML = `
+                <div class="single-blog blog-style-one">
+                    <div class="blog-image">
+                        <a href="/pages/evento/${evento.id}.html">
+                            <img src="${evento.banner}" class="imgCursos" alt="Banner do Evento"/>
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h5 class="blog-title">
+                            <a href="/pages/evento/${evento.id}.html">${evento.titulo}</a>
+                        </h5>
+                        <p class="text">${evento.descricao}</p>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(eventoDiv);
+        });
+    } catch (error) {
+        console.error('Erro ao listar eventos:', error);
+    }
+}
+
+// document.addEventListener('DOMContentLoaded', listarEventos);
+
