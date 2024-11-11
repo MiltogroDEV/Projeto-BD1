@@ -118,7 +118,7 @@ async function cadastrar(e){
                 
                 setTimeout(() => {
                     window.location.href = "/pages/login.html";
-                }, 2000);
+                }, 1000);
 
             } else if(attemptLoggin.error){
                 showMessage("error", `${attemptLoggin.error}`);
