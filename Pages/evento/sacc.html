@@ -30,7 +30,7 @@
                 </div>
 
                 <div>
-                    <span class="avatar avatarBg"><img id="avatar" style="width: 60%; height: 60%;" alt=""></span>
+                    <span class="avatar avatarBg"><img id="avatar" alt=""></span>
                 </div>
                 
             </div>
@@ -190,15 +190,15 @@
                     <div class="modal-body">
                         <label for="basic-url" class="form-label">Imagens</label>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="bannerUpload">Banner</label>
-                            <input type="file" class="form-control" id="bannerUpload" accept="image/*">
+                            <label class="input-group-text" for="bannerEdit">Banner</label>
+                            <input type="file" class="form-control" id="bannerEdit" accept="image/*">
                         </div>
                         <img id="bannerImage" style="max-width: 100%; display: none;" alt="Prévia do Banner">
                         <button id="cropBannerBtn" class="font1" style="display: none;">Cortar Banner</button>
     
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="thumbnailUpload">Miniatura</label>
-                            <input type="file" class="form-control" id="thumbnailUpload" accept="image/*">
+                            <label class="input-group-text" for="thumbnailEdit">Miniatura</label>
+                            <input type="file" class="form-control" id="thumbnailEdit" accept="image/*">
                         </div>
                         <img id="thumbnailImage" style="max-width: 100%; display: none;" alt="Prévia da Miniatura">
                         <button id="cropThumbnailBtn" class="font1" style="display: none;">Cortar Miniatura</button>
@@ -208,48 +208,48 @@
                         <div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="eventDate">Data e hora de Início</label>
-                                <input type="date" class="form-control" id="eventoDataInicio" name="eventoDataInicio" required>
+                                <input type="date" class="form-control" id="eventoDataInicioEdit" name="eventoDataInicioEdit" required>
                                 
-                                <input type="time" class="form-control" id="eventoHoraInicio" name="eventoDataInicio" required>
+                                <input type="time" class="form-control" id="eventoHoraInicioEdit" name="eventoDataInicioEdit" required>
                             </div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="eventDate">Data e hora do Fim</label>
-                                <input type="date" class="form-control" id="eventoDataFim" name="eventoDataFim" required>
+                                <input type="date" class="form-control" id="eventoDataFimEdit" name="eventoDataFimEdit" required>
                                 
-                                <input type="time" class="form-control" id="eventoHoraFim" name="eventoDataFim" required>
+                                <input type="time" class="form-control" id="eventoHoraFimEdit" name="eventoDataFimEdit" required>
                             </div>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon3">Título</span>
-                            <input type="text" class="form-control" id="tituloEvento" aria-describedby="basic-addon3" required>
+                            <input type="text" class="form-control" id="tituloEventoEdit" aria-describedby="basic-addon3" required>
                         </div>
                         <div class="input-group">
                             <span class="input-group-text">Descrição</span>
-                            <textarea id="descEvento" class="form-control" maxlength="255" aria-label="Digite uma descrição do evento"></textarea>
+                            <textarea id="descEventoEdit" class="form-control" maxlength="255" aria-label="Digite uma descrição do evento"></textarea>
                         </div>
                         
                         <br><label for="basic-url" class="form-label">Endereço</label>
                         
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon3">Instituição</span>
-                            <input type="text" class="form-control" id="instEvento" aria-describedby="basic-addon3" required>
+                            <input type="text" class="form-control" id="instEventoEdit" aria-describedby="basic-addon3" required>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon3">Rua</span>
-                            <input type="text" class="form-control" id="ruaEvento" aria-describedby="basic-addon3" required>
+                            <input type="text" class="form-control" id="ruaEventoEdit" aria-describedby="basic-addon3" required>
                             <span class="input-group-text" id="basic-addon3">Bairro</span>
-                            <input type="text" class="form-control" id="bairroEvento" aria-describedby="basic-addon3" required>
+                            <input type="text" class="form-control" id="bairroEventoEdit" aria-describedby="basic-addon3" required>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon3">Numero</span>
-                            <input type="text" class="form-control" id="numeroEvento" aria-describedby="basic-addon3" required>
+                            <input type="text" class="form-control" id="numeroEventoEdit" aria-describedby="basic-addon3" required>
                             <span class="input-group-text" id="basic-addon3">Cidade</span>
-                            <input type="text" class="form-control" id="cidadeEvento" aria-describedby="basic-addon3" required>
+                            <input type="text" class="form-control" id="cidadeEventoEdit" aria-describedby="basic-addon3" required>
                             
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon3">Estado</span>
-                            <select class="form-select" id="estadoEvento" required>
+                            <select class="form-select" id="estadoEventoEdit" required>
                                 <option>Acre</option>
                                 <option>Alagoas</option>
                                 <option>Amapá</option>
@@ -287,7 +287,7 @@
                     </div>
                     <div class="modal-footer">
                         <button id="btnFecharModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary" id="saveEditEvent">Salvar Alterações</button>
+                        <button type="button" class="btn btn-primary" id="saveEventEdit">Salvar Alterações</button>
                     </div>
                 </div>
             </div>

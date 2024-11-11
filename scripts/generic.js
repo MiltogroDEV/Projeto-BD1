@@ -66,6 +66,9 @@ if (userSession) {
     
     if (avatar) {
         avatar.src = userSession.foto === "Default" ? "/img/icons/avatar.png" : userSession.foto;
+        if (avatar.src === "Default"){
+            avatar.style.border = "1px solid black";
+        }
     }
     
 } else {
@@ -131,12 +134,11 @@ if (modal){
         modal.hide();
     });
     
-    // Inicialização dos elementos
-    const bannerUpload = document.getElementById("bannerUpload");
+    const bannerUpload = document.getElementById("bannerEdit");
     const bannerImage = document.getElementById("bannerImage");
     const cropBannerBtn = document.getElementById("cropBannerBtn");
 
-    const thumbnailUpload = document.getElementById("thumbnailUpload");
+    const thumbnailUpload = document.getElementById("thumbnailEdit");
     const thumbnailImage = document.getElementById("thumbnailImage");
     const cropThumbnailBtn = document.getElementById("cropThumbnailBtn");
 

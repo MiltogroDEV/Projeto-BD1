@@ -85,9 +85,11 @@
     width: 70%;
 }
 
+/* ---------------------- Avatar ---------------------- */
+
 .avatarBg{
-    border: 1px solid black;
     background-color: white;
+    overflow: hidden;
 }
 
 /* ---------------------- Minicursos ---------------------- */
@@ -134,10 +136,6 @@
 }
 
 /* ---------------------- Perfil ---------------------- */
-
-.avatar{
-    scale: 100%;
-}
 
 .userDisplay{
     display: flex;
